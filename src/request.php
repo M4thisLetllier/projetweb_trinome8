@@ -1,6 +1,5 @@
 <?php
 require_once('database.php');
-
 // Connexion à la bdd
 $db = dbConnect();
 if (!$db)
@@ -42,7 +41,7 @@ switch ($requestMethod) {
 //si la requête porte sur une installation
 switch ($requestRessource) {
     case "pdc":
-        require_once "controleur/statistique_controleur.php";
+        require_once "controleur/visualisation_controleur.php";
         //ici l'id représente la stat demandée
         GestionDemande($db,$requestMethod,$id,$data);
         break;
