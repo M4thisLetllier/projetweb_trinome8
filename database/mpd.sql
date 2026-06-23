@@ -6,10 +6,9 @@
 -- Table: type_prise
 -- ----------------------------
 CREATE TABLE type_prise (
-                            id_prise INT NOT NULL,
+                            id_prise INT NOT NULL AUTO_INCREMENT,
                             denomination_prise VARCHAR(128) NOT NULL,
-                            CONSTRAINT type_prise_PK PRIMARY KEY (id_prise),
-                            CONSTRAINT id_prise_UNQ UNIQUE (id_prise)
+                            CONSTRAINT type_prise_PK PRIMARY KEY (id_prise)
 )ENGINE=InnoDB;
 
 
@@ -17,7 +16,7 @@ CREATE TABLE type_prise (
 -- Table: condition_acces
 -- ----------------------------
 CREATE TABLE condition_acces (
-                                 id_acces SMALLINT NOT NULL,
+                                 id_acces SMALLINT NOT NULL AUTO_INCREMENT,
                                  denomination_acces VARCHAR(50) NOT NULL,
                                  CONSTRAINT condition_acces_PK PRIMARY KEY (id_acces),
                                  CONSTRAINT id_acces_UNQ UNIQUE (id_acces)
@@ -28,7 +27,7 @@ CREATE TABLE condition_acces (
 -- Table: horraire
 -- ----------------------------
 CREATE TABLE horraire (
-                          id_horraire INT NOT NULL,
+                          id_horraire INT NOT NULL AUTO_INCREMENT,
                           denomination_horraire VARCHAR(50) NOT NULL,
                           CONSTRAINT horraire_PK PRIMARY KEY (id_horraire),
                           CONSTRAINT id_horraire_UNQ UNIQUE (id_horraire)
@@ -39,7 +38,7 @@ CREATE TABLE horraire (
 -- Table: Enseigne
 -- ----------------------------
 CREATE TABLE Enseigne (
-                          id_enseigne INT NOT NULL,
+                          id_enseigne INT NOT NULL AUTO_INCREMENT,
                           nom_enseigne VARCHAR(100) NOT NULL,
                           CONSTRAINT Enseigne_PK PRIMARY KEY (id_enseigne),
                           CONSTRAINT id_enseigne_UNQ UNIQUE (id_enseigne)
@@ -50,7 +49,7 @@ CREATE TABLE Enseigne (
 -- Table: restriction_gabarit
 -- ----------------------------
 CREATE TABLE restriction_gabarit (
-                                     id_restriction_gabarit INT NOT NULL,
+                                     id_restriction_gabarit INT NOT NULL AUTO_INCREMENT,
                                      denomination VARCHAR(50) NOT NULL,
                                      CONSTRAINT restriction_gabarit_PK PRIMARY KEY (id_restriction_gabarit),
                                      CONSTRAINT id_restriction_gabarit_UNQ UNIQUE (id_restriction_gabarit)
@@ -61,7 +60,7 @@ CREATE TABLE restriction_gabarit (
 -- Table: type_paiment
 -- ----------------------------
 CREATE TABLE type_paiment (
-                              id_paiment INT NOT NULL,
+                              id_paiment INT NOT NULL AUTO_INCREMENT,
                               denomination_paiment VARCHAR(100) NOT NULL,
                               CONSTRAINT type_paiment_PK PRIMARY KEY (id_paiment),
                               CONSTRAINT id_paiment_UNQ UNIQUE (id_paiment)
@@ -72,7 +71,7 @@ CREATE TABLE type_paiment (
 -- Table: Accessibilite_pmr
 -- ----------------------------
 CREATE TABLE Accessibilite_pmr (
-                                   id_accessibilite SMALLINT NOT NULL,
+                                   id_accessibilite SMALLINT NOT NULL AUTO_INCREMENT,
                                    denomination_accessibilite VARCHAR(50) NOT NULL,
                                    CONSTRAINT Accessibilite_pmr_PK PRIMARY KEY (id_accessibilite),
                                    CONSTRAINT id_accessibilite_UNQ UNIQUE (id_accessibilite)
