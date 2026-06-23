@@ -1,0 +1,193 @@
+/* Variables de couleur et reset */
+:root {
+    --primary-color: #1b7454; /* Vert émeraude */
+    --primary-hover: #114935; /* Vert plus foncé pour le survol */
+    --bg-light: #f4f6f5;
+    --card-bg: #ffffff;
+    --text-dark: #000000; /* Onglets noirs par défaut */
+    --text-muted: #2c3e50;
+    --border-color: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar & Onglets */
+.navbar {
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.navbar nav .nav-link {
+    text-decoration: none;
+    color: var(--text-dark); /* Liens noirs par défaut */
+    margin-left: 1.5rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+/* Au survol ou si l'onglet est actif, il devient vert */
+.navbar nav .nav-link:hover, 
+.navbar nav .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Layout */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+    gap: 1.5rem;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    gap: 1.5rem;
+}
+
+/* Tableau */
+.table-section {
+    flex: 1.2;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+.table-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #eef3f1;
+    padding: 0.75rem 1rem;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover, tbody tr.selected {
+    background-color: #f0f7f4;
+}
+
+.bold { font-weight: bold; }
+
+/* Section Carte (IMPORTANT : Hauteur fixe ajoutée pour forcer l'affichage du fond de carte) */
+.map-section {
+    flex: 1;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 450px; /* Force Leaflet à s'afficher */
+    background: #e2e8f0;
+}
+
+/* Popup noire par-dessus la carte */
+.info-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(22, 32, 29, 0.95);
+    color: #ffffff;
+    padding: 1.25rem;
+    border-radius: 6px;
+    width: 280px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: none; /* Masquée par défaut, le JS l'affiche au survol */
+    pointer-events: none;
+}
+
+.info-popup h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 0.5rem;
+}
+
+.info-popup ul { list-style: none; }
+.info-popup li { font-size: 0.85rem; margin-bottom: 0.4rem; color: #cbd5e1; }
+.info-popup li strong { color: #ffffff; }
+
+/* Boutons du bas (Tous en Vert émeraude, écriture blanche, survol foncé) */
+.action-bar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: auto;
+}
+
+.btn-filled {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--primary-color); /* Fond vert */
+    color: #ffffff; /* Écrit en blanc */
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+/* Devient plus foncé au survol */
+.btn-filled:hover {
+    background-color: var(--primary-hover);
+}
+
+.project-footer {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
