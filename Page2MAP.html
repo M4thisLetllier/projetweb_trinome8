@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script src="js\ajax.js"></script>
+    
+    <script src="js\Page1Map.js"></script>
+</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRVE DataStudio</title>
+    <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">IRVE DataStudio</div>
+        <nav>
+            <a href="#" class="nav-link active">Accueil</a>
+            <a href="#" class="nav-link">Visualisation & Carte</a>
+            <a href="#" class="nav-link">Statistiques</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <div class="main-content">
+            <section class="table-section">
+                <h2>Exploration des points de charge</h2>
+                <div class="table-wrapper">
+                    <table id="irve-table">
+                        <thead>
+                            <tr>
+                                <th>ID Point</th>
+                                <th>Aménageur</th>
+                                <th>Département</th>
+                                <th>Puissance</th>
+                                <th>Connecteur</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="map-section">
+                <div id="map">
+                    <div id="info-popup" class="info-popup">
+                        <h3 id="popup-station-name">Station : --</h3>
+                        <ul>
+                            <li><strong>1. Adresse :</strong> <span id="popup-adresse">--</span></li>
+                            <li><strong>2. Nbr Points :</strong> <span id="popup-bornes">--</span></li>
+                            <li><strong>3. Puissance Max :</strong> <span id="popup-puissance">--</span></li>
+                            <li><strong>4. Accès :</strong> 24h/24 - 7j/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="action-bar">
+            <a href="predictions-clusters.html" class="btn btn-filled">Prédire les clusters</a>
+            <a href="predictions-implantation.html" class="btn btn-filled">Prédire l'implantation</a>
+            <a href="predictions-puissance.html" class="btn btn-filled">Prédire la puissance</a>
+            <div class="project-footer">
+                Projet Big Data / IA / Web — FISE3 — 2026
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
