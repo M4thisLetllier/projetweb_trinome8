@@ -5,6 +5,7 @@
     
     <script src="js\ajax.js"></script>
     
+    
     <script src="js\Page1Map.js"></script>
 </body>
     <meta charset="UTF-8">
@@ -15,12 +16,13 @@
 </head>
 <body>
 
-    <header class="navbar">
+   <header class="navbar">
         <div class="logo">IRVE DataStudio</div>
         <nav>
-            <a href="#" class="nav-link active">Accueil</a>
-            <a href="#" class="nav-link">Visualisation & Carte</a>
-            <a href="#" class="nav-link">Statistiques</a>
+            <a href="Page2MAP.html" class="nav-link">Accueil</a>
+            <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
+            <a href="statistiques.html" class="nav-link active">Statistiques</a>
+            <a href="#" class="nav-link">Predictions Clusters IA</a>
         </nav>
     </header>
 
@@ -30,19 +32,20 @@
             <section class="table-section">
                 <h2>Exploration des points de charge</h2>
                 <div class="table-wrapper">
-                    <table id="irve-table">
-                        <thead>
-                            <tr>
-                                <th>ID Point</th>
-                                <th>Aménageur</th>
-                                <th>Département</th>
-                                <th>Puissance</th>
-                                <th>Connecteur</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body"></tbody>
-                    </table>
-                </div>
+    <table id="irve-table">
+        <thead>
+            <tr>
+                <th>ID PDC</th>
+                <th>Aménageur</th>
+                <th>Département</th>
+                <th>Puissance</th>
+                <th>Type Prise</th>
+                <th>Type Paiement</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+</div>
             </section>
 
             <section class="map-section">
@@ -50,8 +53,8 @@
                     <div id="info-popup" class="info-popup">
                         <h3 id="popup-station-name">Station : --</h3>
                         <ul>
-                            <li><strong>1. Adresse :</strong> <span id="popup-adresse">--</span></li>
-                            <li><strong>2. Nbr Points :</strong> <span id="popup-bornes">--</span></li>
+                            <li><strong>1. Type de prise :</strong> <span id="popup-adresse">--</span></li>
+                            <li><strong>2. Type de paiements :</strong> <span id="popup-bornes">--</span></li>
                             <li><strong>3. Puissance Max :</strong> <span id="popup-puissance">--</span></li>
                             <li><strong>4. Accès :</strong> 24h/24 - 7j/7</li>
                         </ul>
@@ -72,6 +75,5 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-</body>
+    
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRVE DataStudio - Statistiques</title>
+    <link rel="stylesheet" href="css\style.css">
+    <script src="js\ajax.js"></script>
+    
+    
+    <script src="js\page3stats.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+    <div class="logo-container">
+        <img src="IMG_LOGO/logo.png" alt="Logo" class="logo-img">
+        <div class="logo">IRVE DataStudio</div>
+    </div>
+    <nav>
+        <a href="Page2MAP.html" class="nav-link">Accueil</a>
+        <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
+        <a href="statistiques.html" class="nav-link active">Statistiques</a>
+        <a href="#" class="nav-link">Predictions Clusters IA</a>
+    </nav>
+</header>
+
+    <main class="dashboard-container">
+        
+        <header class="main-header">
+            <h1>Statistiques des Infrastructures de Recharge</h1>
+            
+            <div class="filter-container">
+                <label for="select-departement">Filtrer par département :</label>
+                <select id="select-departement">
+                    <option value="">-- Sélectionner un département --</option>
+                    </select>
+            </div>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <h3>TOTAL STATIONS</h3>
+                <p class="kpi-value" id="kpi-total-stations">-</p>
+                <span class="kpi-sub">Points de charge déployés</span>
+            </div>
+            <div class="kpi-card">
+                <h3>PUISSANCE MOYENNE</h3>
+                <p class="kpi-value" id="kpi-puissance-moyenne">- kW</p>
+                <span class="kpi-sub">Idéal charge semi-rapide</span>
+            </div>
+            <div class="kpi-card">
+                <h3>IMPLANTATION MAJORITAIRE</h3>
+                <p class="kpi-value" id="kpi-implantation">-</p>
+                <span class="kpi-sub" id="kpi-implantation-sub">- % des installations globales</span>
+            </div>
+            <div class="kpi-card">
+                <h3>CONNECTEUR STANDARD</h3>
+                <p class="kpi-value" id="kpi-connecteur">-</p>
+                <span class="kpi-sub">Majorité du parc roulant européen</span>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <h2>Répartition de la puissance de charge</h2>
+            
+            <div class="progress-bar-container">
+                <div class="progress-segment rapide" id="bar-rapide" style="width: 0%"></div>
+                <div class="progress-segment accelere" id="bar-accelere" style="width: 0%"></div>
+                <div class="progress-segment normale" id="bar-normale" style="width: 0%"></div>
+            </div>
+
+            <div class="legend-container">
+                <div class="legend-item">
+                    <span class="dot rapide-dot"></span>
+                    Rapide (&gt;50kW) : &nbsp;<strong id="txt-rapide">- %</strong>
+                </div>
+                <div class="legend-item">
+                    <span class="dot accelere-dot"></span>
+                    Accéléré (22kW) : &nbsp;<strong id="txt-accelere">- %</strong>
+                </div>
+                <div class="legend-item">
+                    <span class="dot normale-dot"></span>
+                    Normale (&lt;7.4kW) : &nbsp;<strong id="txt-normale">- %</strong>
+                </div>
+            </div>
+        </section>
+
+        <footer class="project-footer">
+            ISEN A3 - Projet Big Data / IA / Web
+        </footer>
+    </main>
+
+    <script src="statistiques.js"></script>
+</body>
+</html>

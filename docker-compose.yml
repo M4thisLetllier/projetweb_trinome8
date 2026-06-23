@@ -7,6 +7,7 @@ services:
     volumes:
       # Apache s'attend à trouver les fichiers web dans /var/www/html
       - ./src:/var/www/html
+      
   db:
     image: mysql:8.0
     restart: always
