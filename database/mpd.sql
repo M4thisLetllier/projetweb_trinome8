@@ -1,7 +1,29 @@
 -- ----------------------------------------------------------
 -- Script MYSQL pour mcd
 -- ----------------------------------------------------------
+-- On désactive temporairement la sécurité des clés étrangères
+SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS PAYER;
+DROP TABLE IF EXISTS Avoir;
+DROP TABLE IF EXISTS pdc;
+DROP TABLE IF EXISTS station;
+DROP TABLE IF EXISTS commune;
+DROP TABLE IF EXISTS departement;
+DROP TABLE IF EXISTS implatation;
+DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS operateur;
+DROP TABLE IF EXISTS amenageur;
+DROP TABLE IF EXISTS Accessibilite_pmr;
+DROP TABLE IF EXISTS type_paiment;
+DROP TABLE IF EXISTS restriction_gabarit;
+DROP TABLE IF EXISTS Enseigne;
+DROP TABLE IF EXISTS horraire;
+DROP TABLE IF EXISTS condition_acces;
+DROP TABLE IF EXISTS type_prise;
+
+-- On réactive la sécurité des clés étrangères
+SET FOREIGN_KEY_CHECKS = 1;
 -- ----------------------------
 -- Table: type_prise
 -- ----------------------------
@@ -98,8 +120,7 @@ CREATE TABLE operateur (
                            nom_operateur VARCHAR(128) NOT NULL,
                            contact_operateur VARCHAR(128),
                            telephone_operateur VARCHAR(128),
-                           CONSTRAINT operateur_PK PRIMARY KEY (id_operateur),
-                           CONSTRAINT id_operateur_UNQ UNIQUE (id_operateur)
+                           CONSTRAINT operateur_PK PRIMARY KEY (id_operateur)
 )ENGINE=InnoDB;
 
 
@@ -119,8 +140,7 @@ CREATE TABLE region (
 CREATE TABLE implatation (
                              id_implantation INT NOT NULL,
                              denomination_implatation VARCHAR(128) NOT NULL,
-                             CONSTRAINT implatation_PK PRIMARY KEY (id_implantation),
-                             CONSTRAINT id_implantation_UNQ UNIQUE (id_implantation)
+                             CONSTRAINT implatation_PK PRIMARY KEY (id_implantation)
 )ENGINE=InnoDB;
 
 
@@ -147,7 +167,6 @@ CREATE TABLE commune (
                          longitude_centroide DECIMAL(10,2) NOT NULL,
                          num_dep INT,
                          CONSTRAINT commune_PK PRIMARY KEY (code_commune_insee),
-                         CONSTRAINT code_commune_insee_UNQ UNIQUE (code_commune_insee),
                          CONSTRAINT commune_num_dep_FK FOREIGN KEY (num_dep) REFERENCES departement (num_dep)
 )ENGINE=InnoDB;
 
@@ -168,12 +187,6 @@ CREATE TABLE station (
                          id_enseigne INT NOT NULL,
                          id_horraire INT,
                          CONSTRAINT station_PK PRIMARY KEY (id_station_itinerance),
-                         CONSTRAINT id_implantation_UNQ UNIQUE (id_implantation),
-                         CONSTRAINT id_amenageur_UNQ UNIQUE (id_amenageur),
-                         CONSTRAINT id_operateur_UNQ UNIQUE (id_operateur),
-                         CONSTRAINT code_commune_insee_UNQ UNIQUE (code_commune_insee),
-                         CONSTRAINT id_enseigne_UNQ UNIQUE (id_enseigne),
-                         CONSTRAINT id_horraire_UNQ UNIQUE (id_horraire),
                          CONSTRAINT station_id_implantation_FK FOREIGN KEY (id_implantation) REFERENCES implatation (id_implantation),
                          CONSTRAINT station_id_amenageur_FK FOREIGN KEY (id_amenageur) REFERENCES amenageur (id_amenageur),
                          CONSTRAINT station_id_operateur_FK FOREIGN KEY (id_operateur) REFERENCES operateur (id_operateur),
@@ -198,9 +211,6 @@ CREATE TABLE pdc (
                      id_restriction_gabarit INT NOT NULL,
                      id_acces SMALLINT NOT NULL,
                      CONSTRAINT pdc_PK PRIMARY KEY (id_pdc_itinerance),
-                     CONSTRAINT id_accessibilite_UNQ UNIQUE (id_accessibilite),
-                     CONSTRAINT id_restriction_gabarit_UNQ UNIQUE (id_restriction_gabarit),
-                     CONSTRAINT id_acces_UNQ UNIQUE (id_acces),
                      CONSTRAINT pdc_id_station_itinerance_FK FOREIGN KEY (id_station_itinerance) REFERENCES station (id_station_itinerance),
                      CONSTRAINT pdc_id_accessibilite_FK FOREIGN KEY (id_accessibilite) REFERENCES Accessibilite_pmr (id_accessibilite),
                      CONSTRAINT pdc_id_restriction_gabarit_FK FOREIGN KEY (id_restriction_gabarit) REFERENCES restriction_gabarit (id_restriction_gabarit),
@@ -215,7 +225,6 @@ CREATE TABLE Avoir (
                        id_prise INT NOT NULL,
                        id_pdc_itinerance VARCHAR(128) NOT NULL,
                        CONSTRAINT Avoir_PK PRIMARY KEY (id_prise, id_pdc_itinerance),
-                       CONSTRAINT id_prise_UNQ UNIQUE (id_prise),
                        CONSTRAINT Avoir_id_prise_FK FOREIGN KEY (id_prise) REFERENCES type_prise (id_prise),
                        CONSTRAINT Avoir_id_pdc_itinerance_FK FOREIGN KEY (id_pdc_itinerance) REFERENCES pdc (id_pdc_itinerance)
 )ENGINE=InnoDB;
@@ -228,7 +237,6 @@ CREATE TABLE PAYER (
                        id_pdc_itinerance VARCHAR(128) NOT NULL,
                        id_paiment INT NOT NULL,
                        CONSTRAINT PAYER_PK PRIMARY KEY (id_pdc_itinerance, id_paiment),
-                       CONSTRAINT id_paiment_UNQ UNIQUE (id_paiment),
                        CONSTRAINT PAYER_id_pdc_itinerance_FK FOREIGN KEY (id_pdc_itinerance) REFERENCES pdc (id_pdc_itinerance),
                        CONSTRAINT PAYER_id_paiment_FK FOREIGN KEY (id_paiment) REFERENCES type_paiment (id_paiment)
 )ENGINE=InnoDB;
