@@ -12,7 +12,7 @@ function GestionDemande($db,$method, $id, $data)
                 $result = \modele\pdc::pdcwithid($db,$id);
             }
             else{
-                $result=\modele\pdc::pdchead($db);
+                $result=\modele\pdc::getpdc($db);
             }
             break;
         case 'POST':
