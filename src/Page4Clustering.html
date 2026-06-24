@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRVE DataStudio - Classification IA</title>
+    <link rel="stylesheet" href="css\style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Style spécifique pour la boîte de légende des clusters */
+        .cluster-legend {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .cluster-legend h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        .legend-row {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+        .cluster-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-container">
+            <img src="IMG_LOGO/logo.png" alt="Logo" class="logo-img">
+            <div class="logo">IRVE DataStudio</div>
+        </div>
+        <nav>
+            <a href="Page2MAP.html" class="nav-link">Accueil</a>
+            <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
+            <a href="statistiques.html" class="nav-link">Statistiques</a>
+            <a href="predictions.html" class="nav-link active">Classification IA</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="main-header">
+            <h1>Résultat du Clustering IA (Script Python)</h1>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                Les points de charge sont cartographiés et colorisés selon leur groupe d'appartenance.
+            </p>
+        </div>
+
+        <div class="map-section" style="height: 600px; flex: none;">
+            
+            <div class="cluster-legend">
+                <h3>Légende des Clusters</h3>
+                <div class="legend-row">
+                    <span class="cluster-dot" style="background-color: #2e7d32;"></span>
+                    Cluster 1 : Haute puissance
+                </div>
+                <div class="legend-row">
+                    <span class="cluster-dot" style="background-color: #1565c0;"></span>
+                    Cluster 2 : Zone rurale lente
+                </div>
+                <div class="legend-row">
+                    <span class="cluster-dot" style="background-color: #ef6c00;"></span>
+                    Cluster 3 : Réseau urbain standard
+                </div>
+            </div>
+
+            <div id="map" style="height: 100%; width: 100%;"></div>
+        </div>
+
+        <footer class="project-footer">
+            ISEN A3 - Projet Big Data / IA / Web
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="src\js\Page4Map.js"></script>
+</body>
+</html>
