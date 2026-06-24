@@ -56,6 +56,11 @@ switch ($requestRessource) {
         GestionDemande($db, $requestMethod, $id, $data);
         break;
 
+    case "pdc-filtre":
+        require_once "controleur/pdc_filtre_controleur.php";
+        GestionDemandeFiltre($db, $requestMethod, $data);
+        break;
+
     case 'test':
         echo "oui";
         break;
