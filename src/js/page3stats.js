@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 2. REQUÊTE AJAX : Récupérer les stats du département sélectionné
 function chargerStatistiques(numDep) {
     // Passage du paramètre de filtrage sous forme d'objet { num_dep: numDep }
-    ajaxRequest("../request.php/dep/numDep", "GET", function(data) {
+    ajaxRequest(`../request.php/dep/${numDep}`, "GET", function(data) {
         if (data) {
             // Mise à jour de l'interface avec les données filtrées de la base
             mettreAJourInterface(data);
