@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 2. REQUÊTE AJAX : Chargement global des points existants via ajax.js (en GET)
-    ajaxRequest("api-clusters.php", "GET", function(bornes) {
+    ajaxRequest("../request.php/clusters", "GET", function(bornes) {
         if (bornes && bornes.length > 0) {
             bornes.forEach(borne => {
                 if (borne.latitude_pdc && borne.longitude_pdc) {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             // Appel AJAX en POST utilisant ton fichier ajax.js
-            ajaxRequest("api-predire-unitaire.php", "POST", function(reponse) {
+            ajaxRequest("../request.php/clusters", "POST", function(reponse) {
                 if (reponse && reponse.success) {
                     const clusterTrouve = reponse.cluster;
                     const couleur = obtenirCouleurCluster(clusterTrouve);
