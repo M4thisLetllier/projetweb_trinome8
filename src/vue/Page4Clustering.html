@@ -47,7 +47,7 @@
             <div class="logo">IRVE DataStudio</div>
         </div>
         <nav>
-            <a href="F1.html" class="nav-link">Accueil</a>
+            <a href="vue\Page1Accueil.html" class="nav-link">Accueil</a>
             <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
             <a href="Page3Stat.html" class="nav-link">Statistiques</a>
             <a href="#" class="nav-link active">Classification IA</a>
@@ -55,12 +55,19 @@
     </header>
 
     <main class="dashboard-container">
-        <div class="main-header">
-            <h1>Résultat du Clustering IA (Script Python)</h1>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">
-                Les points de charge sont cartographiés et colorisés selon leur groupe d'appartenance.
-            </p>
-        </div>
+        <div>
+        <h1>Résultat du Clustering IA (Script Python)</h1>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+            Les points de charge sont cartographiés et colorisés selon leur groupe d'appartenance.
+        </p>
+    </div>
+    
+    <div class="ia-manual-form" style="display: flex; gap: 0.75rem; align-items: center; background: #f0f4f2; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+        <strong style="font-size: 0.85rem; color: var(--text-dark);">Tester des coordonnées :</strong>
+        <input type="number" id="manual-lat" step="any" placeholder="Latitude (ex: 48.85)" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: 4px; width: 140px; font-size: 0.85rem;">
+        <input type="number" id="manual-lon" step="any" placeholder="Longitude (ex: 2.35)" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: 4px; width: 140px; font-size: 0.85rem;">
+        <button id="btn-predire-unitaire" class="btn-filled" style="padding: 0.4rem 1rem; font-size: 0.85rem; border-radius: 4px;">Prédire & Afficher</button>
+    </div>
 
         <div class="map-section" style="height: 600px; flex: none;">
             
