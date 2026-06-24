@@ -1,15 +1,14 @@
-
+/**
+ * IRVE DataStudio - Contrôleur Statistiques
+ * FISE3 - 2026
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
     const selectDep = document.getElementById("select-departement");
 
-    // 1. REQUÊTE AJAX : Charger la liste des départements au démarrage
-    fetch("api-departements.php")
-        .then(response => {
-            if (!response.ok) throw new Error("Erreur réseau");
-            return response.json();
-        })
-        .then(data => {
+    // 1. REQUÊTE AJAX : Charger la liste des départements au démarrage en utilisant ajaxRequest
+    ajaxRequest("../request.php/dep", "GET", function(data) {
+        if (data && data.length > 0) {
             // Exemple attendu de l'API : [{num_dep: 29, denomination_dep: "Finistère"}]
             data.forEach(dep => {
                 const option = document.createElement("option");
@@ -17,10 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 option.textContent = `${dep.num_dep} - ${dep.denomination_dep}`;
                 selectDep.appendChild(option);
             });
-        })
-        .catch(error => console.error("Impossible de charger les départements:", error));
+        } else {
+            console.warn("Aucun département retourné par l'API.");
+        }
+    }, null);
 
-    // Écouteur d'événement sur le changement de sélection
+    // Écouteur d'événement sur le changement de sélection du menu déroulant
     selectDep.addEventListener("change", (e) => {
         const idDep = e.target.value;
         if (idDep !== "") {
@@ -33,20 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 2. REQUÊTE AJAX : Récupérer les stats du département sélectionné
 function chargerStatistiques(numDep) {
-    // On envoie le numéro du département en paramètre GET à ton API PHP
-    fetch(`api-stats.php?num_dep=${numDep}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Erreur lors de la récupération des données");
-            return response.json();
-        })
-        .then(data => {
-            // Mettre à jour l'interface HTML avec les données reçues de ta base
+    // Passage du paramètre de filtrage sous forme d'objet { num_dep: numDep }
+    ajaxRequest("../request.php/dep/numDep", "GET", function(data) {
+        if (data) {
+            // Mise à jour de l'interface avec les données filtrées de la base
             mettreAJourInterface(data);
-        })
-        .catch(error => {
-            console.error("Erreur AJAX :", error);
+        } else {
+            console.error("Erreur : Aucune statistique renvoyée pour ce département.");
             reinitialiserInterface();
-        });
+        }
+    }, { num_dep: numDep }); // ajaxRequest va l'ajouter automatiquement sous la forme ?num_dep=XX
 }
 
 // Applique les valeurs récupérées dans l'arborescence HTML
