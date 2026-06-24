@@ -6,7 +6,7 @@
     <title>IRVE DataStudio - Classification IA</title>
     
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/classification.css">
+    <link rel="stylesheet" href="../css/Page5Classification.css">
 </head>
 <body>
 
@@ -31,9 +31,10 @@
         <h1>Résultats Comparatifs des Modèles de Classification IA</h1>
 
         <div class="banniere-info">
-            <div><strong>ID Sélectionné : FR-881-01</strong></div>
-            <div>Aménageur : TotalEnergies</div>
-            <div>Fichier source IA : export_IA.csv</div>
+            <div><strong>ID Sélectionné : <span id="ia-id">En attente...</span></strong></div>
+            <div>Aménageur : <span id="ia-amenageur">En attente...</span></div>
+            <div>Département : <span id="ia-dep">--</span></div>
+            <div>Puissance initiale : <span id="ia-puissance">--</span> kW</div>
         </div>
 
         <div class="grille-resultats">
@@ -44,34 +45,34 @@
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">Random Forest Classifier</span>
-                        <span class="score-modele vert-fort">94.2% (Précision)</span>
+                        <span id="score-rf-imp" class="score-modele vert-fort">94.2% (Précision)</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage" style="width: 94.2%;"></div>
+                        <div id="barre-rf-imp" class="barre-remplissage" style="width: 94.2%;"></div>
                     </div>
-                    <div class="texte-resultat">Résultat : Parking Centre Commercial</div>
+                    <div id="resultat-rf-imp" class="texte-resultat">Résultat : Chargement...</div>
                 </div>
 
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">Arbre de Décision</span>
-                        <span class="score-modele vert-moyen">87.5%</span>
+                        <span id="score-tree-imp" class="score-modele vert-moyen">87.5%</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage moyen" style="width: 87.5%;"></div>
+                        <div id="barre-tree-imp" class="barre-remplissage moyen" style="width: 87.5%;"></div>
                     </div>
-                    <div class="texte-resultat">Résultat : Parking Centre Commercial</div>
+                    <div id="resultat-tree-imp" class="texte-resultat">Résultat : Chargement...</div>
                 </div>
 
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">Régression Logistique</span>
-                        <span class="score-modele gris-faible">79.1%</span>
+                        <span id="score-log-imp" class="score-modele gris-faible">79.1%</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage faible" style="width: 79.1%;"></div>
+                        <div id="barre-log-imp" class="barre-remplissage faible" style="width: 79.1%;"></div>
                     </div>
-                    <div class="texte-resultat">Résultat : Voirie Publique</div>
+                    <div id="resultat-log-imp" class="texte-resultat">Résultat : Chargement...</div>
                 </div>
             </div>
 
@@ -81,39 +82,40 @@
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">K-Nearest Neighbors (KNN)</span>
-                        <span class="score-modele vert-fort">91.0% Score</span>
+                        <span id="score-knn-pui" class="score-modele vert-fort">91.0% Score</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage" style="width: 91.0%;"></div>
+                        <div id="barre-knn-pui" class="barre-remplissage" style="width: 91.0%;"></div>
                     </div>
-                    <div class="texte-resultat">Valeur estimée : 22 kW</div>
+                    <div id="resultat-knn-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
                 </div>
 
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">Gradient Boosting</span>
-                        <span class="score-modele vert-moyen">89.3%</span>
+                        <span id="score-gb-pui" class="score-modele vert-moyen">89.3%</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage moyen" style="width: 89.3%;"></div>
+                        <div id="barre-gb-pui" class="barre-remplissage moyen" style="width: 89.3%;"></div>
                     </div>
-                    <div class="texte-resultat">Valeur estimée : 22 kW</div>
+                    <div id="resultat-gb-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
                 </div>
 
                 <div class="bloc-modele">
                     <div class="en-tete-modele">
                         <span class="nom-modele">SVM Regressor</span>
-                        <span class="score-modele gris-faible">82.4%</span>
+                        <span id="score-svm-pui" class="score-modele gris-faible">82.4%</span>
                     </div>
                     <div class="barre-fond">
-                        <div class="barre-remplissage faible" style="width: 82.4%;"></div>
+                        <div id="barre-svm-pui" class="barre-remplissage faible" style="width: 82.4%;"></div>
                     </div>
-                    <div class="texte-resultat">Valeur estimée : 50 kW</div>
+                    <div id="resultat-svm-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
                 </div>
             </div>
 
         </div>
     </main>
-
+    
+    <script src="../js/Page5Classification.js"></script>
 </body>
 </html>

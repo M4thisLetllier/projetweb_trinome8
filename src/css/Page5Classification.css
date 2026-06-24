@@ -30,17 +30,17 @@ h1 {
 
 /* --- Bannière d'Information --- */
 .banniere-info {
-    background-color: var(--vert-clair);
-    border: 1px solid #C8E6C9;
-    border-radius: 12px;
-    padding: 20px 30px;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;       /* Permet de passer à la ligne si l'écran est petit */
+    gap: 30px;             /* Crée un bel espace de 30px entre chaque info */
+    justify-content: center; /* Centre le tout */
     align-items: center;
-    margin-bottom: 40px;
-    color: #2E7D32;
+    padding: 15px 20px;
+    background-color: #e9f5ec; /* Un fond vert très clair (ajuste selon ton thème) */
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 30px;
 }
-
 .banniere-info strong {
     color: #1B5E20;
     font-size: 16px;
