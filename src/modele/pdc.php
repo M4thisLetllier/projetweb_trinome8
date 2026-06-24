@@ -3,6 +3,7 @@
 namespace modele;
 
 use mysql_xdevapi\DatabaseObject;
+use PDO;
 
 class pdc
 {
