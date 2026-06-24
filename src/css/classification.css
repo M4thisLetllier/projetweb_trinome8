@@ -1,0 +1,126 @@
+/* --- Variables spécifiques à la page de classification --- */
+:root {
+    --vert-isen: #34C759;
+    --vert-clair: #E8F5E9;
+    --gris-clair: #F2F2F7;
+    --gris-moyen: #E5E5EA;
+    --gris-texte: #8E8E93;
+    --noir-texte: #1D1D1F;
+}
+
+body {
+    background-color: #F5F5F7;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Layout Principal --- */
+.dashboard-ia {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 28px;
+    color: var(--noir-texte);
+    margin-bottom: 20px;
+}
+
+/* --- Bannière d'Information --- */
+.banniere-info {
+    background-color: var(--vert-clair);
+    border: 1px solid #C8E6C9;
+    border-radius: 12px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    color: #2E7D32;
+}
+
+.banniere-info strong {
+    color: #1B5E20;
+    font-size: 16px;
+}
+
+/* --- Grille des Cartes (Flexbox) --- */
+.grille-resultats {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; 
+}
+
+/* --- Style des Cartes Blanches --- */
+.carte-ia {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 30px;
+    flex: 1; 
+    min-width: 400px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.carte-ia h2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gris-moyen);
+    color: var(--noir-texte);
+}
+
+/* --- Les Blocs de Modèles d'IA --- */
+.bloc-modele {
+    margin-bottom: 25px;
+}
+
+.en-tete-modele {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 8px;
+}
+
+.nom-modele {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--noir-texte);
+}
+
+.score-modele {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Classes pour les couleurs de scores */
+.vert-fort { color: var(--vert-isen); }
+.vert-moyen { color: #6FCF97; }
+.gris-faible { color: #A9A9A9; }
+
+/* --- La Barre de Progression --- */
+.barre-fond {
+    height: 10px;
+    background-color: var(--gris-clair);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.barre-remplissage {
+    height: 100%;
+    background-color: var(--vert-isen);
+    border-radius: 5px;
+    transition: width 1s ease-in-out; /* Animation d'apparition */
+}
+
+.barre-remplissage.moyen { background-color: #6FCF97; }
+.barre-remplissage.faible { background-color: #A9A9A9; }
+
+/* --- Le Texte de Résultat --- */
+.texte-resultat {
+    font-size: 13px;
+    color: var(--gris-texte);
+}

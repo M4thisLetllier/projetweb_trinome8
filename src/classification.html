@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRVE DataStudio - Classification IA</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="css/classification.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">IRVE DataStudio</div>
+        <nav>
+            <a href="F1.html" class="nav-link">Accueil</a>
+            <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
+            <a href="statistiques.html" class="nav-link">Statistiques</a>
+            <a href="classification.html" class="nav-link active">Classification IA</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-ia">
+        
+        <h1>Résultats Comparatifs des Modèles de Classification IA</h1>
+
+        <div class="banniere-info">
+            <div><strong>ID Sélectionné : FR-881-01</strong></div>
+            <div>Aménageur : TotalEnergies</div>
+            <div>Fichier source IA : export_IA.csv</div>
+        </div>
+
+        <div class="grille-resultats">
+            
+            <div class="carte-ia">
+                <h2>Variable Prédite : Type d'Implantation</h2>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">Random Forest Classifier</span>
+                        <span class="score-modele vert-fort">94.2% (Précision)</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage" style="width: 94.2%;"></div>
+                    </div>
+                    <div class="texte-resultat">Résultat : Parking Centre Commercial</div>
+                </div>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">Arbre de Décision</span>
+                        <span class="score-modele vert-moyen">87.5%</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage moyen" style="width: 87.5%;"></div>
+                    </div>
+                    <div class="texte-resultat">Résultat : Parking Centre Commercial</div>
+                </div>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">Régression Logistique</span>
+                        <span class="score-modele gris-faible">79.1%</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage faible" style="width: 79.1%;"></div>
+                    </div>
+                    <div class="texte-resultat">Résultat : Voirie Publique</div>
+                </div>
+            </div>
+
+            <div class="carte-ia">
+                <h2>Variable Prédite : Puissance Nominale</h2>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">K-Nearest Neighbors (KNN)</span>
+                        <span class="score-modele vert-fort">91.0% Score</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage" style="width: 91.0%;"></div>
+                    </div>
+                    <div class="texte-resultat">Valeur estimée : 22 kW</div>
+                </div>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">Gradient Boosting</span>
+                        <span class="score-modele vert-moyen">89.3%</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage moyen" style="width: 89.3%;"></div>
+                    </div>
+                    <div class="texte-resultat">Valeur estimée : 22 kW</div>
+                </div>
+
+                <div class="bloc-modele">
+                    <div class="en-tete-modele">
+                        <span class="nom-modele">SVM Regressor</span>
+                        <span class="score-modele gris-faible">82.4%</span>
+                    </div>
+                    <div class="barre-fond">
+                        <div class="barre-remplissage faible" style="width: 82.4%;"></div>
+                    </div>
+                    <div class="texte-resultat">Valeur estimée : 50 kW</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
