@@ -31,7 +31,7 @@ class pdc
           LEFT JOIN PAYER pay ON p.id_pdc_itinerance = pay.id_pdc_itinerance
           LEFT JOIN type_paiment tpay ON pay.id_paiment = tpay.id_paiment
           GROUP BY p.id_pdc_itinerance
-          Limit 10";
+          Limit 1000";
 
         $statement = $db->prepare($query);
         $statement->execute();

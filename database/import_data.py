@@ -1,7 +1,6 @@
 import csv
 import mysql.connector
-import numpy as np
-import pandas as pd
+
 from datetime import datetime
 
 # Configuration de la connexion Docker MySQL
