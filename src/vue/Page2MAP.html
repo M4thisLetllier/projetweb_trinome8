@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <script src="../js/ajax.js"></script>
-    
-    
-    <script src="../js/Page1Map.js"></script>
-</body>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRVE DataStudio</title>
+    <title>IRVE DataStudio - Visualisation & Carte</title>
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
-   <header class="navbar">
+    <header class="navbar">
         <div class="logo">IRVE DataStudio</div>
         <nav>
-            <a href="F1.html" class="nav-link">Accueil</a>
+            <a href="Page1Accueil.html" class="nav-link">Accueil</a>
             <a href="Page2MAP.html" class="nav-link active">Visualisation & Carte</a>
             <a href="Page3Stat.html" class="nav-link">Statistiques</a>
             <a href="Page4Clustering.html" class="nav-link">Predictions Clusters IA</a>
+            <a href="Page5Classification.html" class="nav-link">Classification IA</a>
         </nav>
     </header>
 
@@ -32,20 +27,21 @@
             <section class="table-section">
                 <h2>Exploration des points de charge</h2>
                 <div class="table-wrapper">
-    <table id="irve-table">
-        <thead>
-            <tr>
-                <th>ID PDC</th>
-                <th>Aménageur</th>
-                <th>Département</th>
-                <th>Puissance</th>
-                <th>Type Prise</th>
-                <th>Type Paiement</th>
-            </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-    </table>
-</div>
+                    <table id="irve-table">
+                        <thead>
+                            <tr>
+                                <th>Sélection</th>
+                                <th>ID PDC</th>
+                                <th>Aménageur</th>
+                                <th>Département</th>
+                                <th>Puissance</th>
+                                <th>Type Prise</th>
+                                <th>Type Paiement</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
             </section>
 
             <section class="map-section">
@@ -64,9 +60,11 @@
         </div>
 
         <footer class="action-bar">
-            <a href="predictions-clusters.html" class="btn btn-filled">Prédire les clusters</a>
-            <a href="predictions-implantation.html" class="btn btn-filled">Prédire l'implantation</a>
-            <a href="predictions-puissance.html" class="btn btn-filled">Prédire la puissance</a>
+            <a href="Page4Clustering.html" class="btn btn-filled">Prédire les clusters</a>
+            
+            <a href="Page5Classification.html" class="btn btn-filled" id="btn-predire-implantation">Prédire l'implantation</a>
+            <a href="Page5Classification.html" class="btn btn-filled" id="btn-predire-puissance">Prédire la puissance</a>
+            
             <div class="project-footer">
                 Projet Big Data / IA / Web — FISE3 — 2026
             </div>
@@ -75,5 +73,7 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+    <script src="../js/ajax.js"></script>
+    <script src="../js/Page1Map.js"></script>
+</body>
 </html>

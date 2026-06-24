@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. REQUÊTE AJAX
     // ==========================================
     function chargerDonneesIRVE() {
-        ajaxRequest('api-bornes.php', 'GET', function(donnees) {
+        ajaxRequest('../request.php/pdc', 'GET', function(donnees) {
             if (donnees && donnees.length > 0) {
                 genererInterfaceDynamique(donnees);
             } else {
