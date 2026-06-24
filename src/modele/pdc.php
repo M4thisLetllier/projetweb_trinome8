@@ -2,13 +2,12 @@
 
 namespace modele;
 
-use mysql_xdevapi\DatabaseObject;
 use PDO;
 
 class pdc
 {
     /** Renvoie les dix premiers point de charge
-     * @param DatabaseObject $db base de données
+     * @param PDO $db base de données
      * @return mixed 10 données
      */
     static function pdchead($db)
@@ -24,7 +23,7 @@ class pdc
 
     /**
      * Trouve les données d'un pdc précis
-     * @param DatabaseObject $db la base de données
+     * @param PDO $db la base de données
      * @param integer $id l'indice de la base
      * @return mixed les données de le base
      *
@@ -43,7 +42,7 @@ class pdc
     }
     /**
      * Supprime le point de charge d'indice $id
-     * @param DatabaseObject $db la base de donnée
+     * @param PDO $db la base de donnée
      * @param integer $id L'indice à supprimer
      *
      */
@@ -58,7 +57,7 @@ class pdc
     }
     /**
      * Met à jour une valeur spécifique pour un PDC donné.
-     * @param DatabaseObject $db la base de donnée
+     * @param PDO $db la base de donnée
      * @param string $idPdc L'identifiant (id_pdc_itinerance)
      * @param string $columnName Le nom de la colonne à modifier
      * @param mixed $newValue La nouvelle valeur à insérer
@@ -83,9 +82,8 @@ class pdc
 
         $stmt = $db->prepare("
         UPDATE pdc 
-        SET :columnName = :nouvelleValeur 
+        SET {$columnName} = :nouvelleValeur 
         WHERE id_pdc_itinerance = :idPdc;");
-        $stmt->bindParam(":columnName", $columnName);
         $stmt->bindParam(":nouvelleValeur", $newValue);
         $stmt->bindParam(":idPdc", $idPdc);
 
@@ -93,7 +91,7 @@ class pdc
     }
     /**
      * Ajoute un nouveau Point de Charge (PDC) dans la base de données.
-     * @param DatabaseObject $db la base de donnée
+     * @param PDO $db la base de donnée
      * @param array $data Tableau de toutes les données
      * @return bool reussite de la fonction
      */
