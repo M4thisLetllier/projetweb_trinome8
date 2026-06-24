@@ -27,12 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupAdresse = document.getElementById("popup-adresse");
     const popupBornes = document.getElementById("popup-bornes");
     const popupPuissance = document.getElementById("popup-puissance");
+    
+    // Les deux boutons d'action
     const btnImplantation = document.getElementById("btn-predire-implantation");
+    const btnPuissance = document.getElementById("btn-predire-puissance");
 
     // ==========================================
     // 3. REQUÊTE AJAX
     // ==========================================
     function chargerDonneesIRVE() {
+        // La requête part vers le Contrôleur/Modèle PHP configuré par ton collègue
         ajaxRequest('../request.php/pdc', 'GET', function(donnees) {
             if (donnees && donnees.length > 0) {
                 genererInterfaceDynamique(donnees);
@@ -66,18 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${station.denomination_paiment || '--'}</td>
             `;
 
-            // Écouteur sur le bouton radio pour sauvegarder la sélection de l'objet complet
+            // Écouteur sur le bouton radio pour sauvegarder la sélection
             const radio = row.querySelector(".radio-borne");
             radio.addEventListener("change", () => {
                 stationSelectionnee = station;
                 
-                // Optionnel : Ajouter un effet visuel persistant sur la ligne sélectionnée
+                // Effet visuel persistant sur la ligne sélectionnée
                 const allRows = tableBody.querySelectorAll("tr");
                 allRows.forEach(r => r.classList.remove("selected-fixe"));
                 row.classList.add("selected-fixe");
             });
 
-            // Événement Hover classique (conserve ton fonctionnement)
+            // Événement Hover classique (survol de la souris)
             row.addEventListener("mouseenter", () => {
                 const allRows = tableBody.querySelectorAll("tr");
                 allRows.forEach(r => r.classList.remove("selected"));
@@ -125,36 +129,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 5. GESTION DE L'ENVOI POST AU CLIC SUR LE BOUTON
+    // 5. GESTION DE L'ENVOI POST AU CLIC SUR LES BOUTONS
     // ==========================================
-    if (btnImplantation) {
-        btnImplantation.addEventListener("click", () => {
-            if (!stationSelectionnee) {
-                alert("Veuillez sélectionner une borne de recharge à l'aide des boutons radio avant de lancer la prédiction !");
-                return;
+    function lancerPrediction(event) {
+        event.preventDefault(); // Empêche le bouton de recharger la page dans le vide
+        
+        if (!stationSelectionnee) {
+            alert("Veuillez sélectionner une borne de recharge à l'aide des boutons radio avant de lancer la prédiction !");
+            return;
+        }
+
+        // Création du formulaire virtuel caché
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "Page5Classification.html"; // Redirection vers ta belle interface !
+
+        // Insertion de toutes les données de la station dans la valise
+        for (const key in stationSelectionnee) {
+            if (stationSelectionnee.hasOwnProperty(key)) {
+                const hiddenField = document.createElement("input");
+                hiddenField.type = "hidden";
+                hiddenField.name = key;
+                hiddenField.value = stationSelectionnee[key];
+                form.appendChild(hiddenField);
             }
+        }
 
-            // Création d'un formulaire virtuel/caché en méthode POST
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = "predictions-implantation.html"; // La page qui recevra les données POST
+        // Ajout de l'indicateur du bouton cliqué pour le PHP
+        const typePrediction = document.createElement("input");
+        typePrediction.type = "hidden";
+        typePrediction.name = "bouton_clique";
+        typePrediction.value = this.id; 
+        form.appendChild(typePrediction);
 
-            // Boucle sur les propriétés de la station sélectionnée pour créer des inputs cachés
-            for (const key in stationSelectionnee) {
-                if (stationSelectionnee.hasOwnProperty(key)) {
-                    const hiddenField = document.createElement("input");
-                    hiddenField.type = "hidden";
-                    hiddenField.name = key;
-                    hiddenField.value = stationSelectionnee[key];
-                    form.appendChild(hiddenField);
-                }
-            }
-
-            // Ajout du formulaire au document et soumission (redirection automatique)
-            document.body.appendChild(form);
-            form.submit();
-        });
+        // Envoi final
+        document.body.appendChild(form);
+        form.submit();
     }
 
+    // On attache la fonction aux deux boutons verts de la page
+    if (btnImplantation) {
+        btnImplantation.addEventListener("click", lancerPrediction);
+    }
+    if (btnPuissance) {
+        btnPuissance.addEventListener("click", lancerPrediction);
+    }
+
+    // Lancement de la récupération des données au chargement de la page
     chargerDonneesIRVE();
 });

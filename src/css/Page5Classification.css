@@ -124,3 +124,31 @@ h1 {
     font-size: 13px;
     color: var(--gris-texte);
 }
+
+.boite-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.boite-logo img {
+    height: 40px; /* Force la hauteur de l'image SVG */
+    width: auto;
+    mix-blend-mode: multiply;
+}
+
+.texte-logo {
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    margin-top: 5px;
+}
+
+.texte-logo .gras {
+    font-weight: 900;
+    color: var(--noir-texte);
+}
+
+.texte-logo .normal {
+    font-weight: 400;
+    color: var(--gris-texte);
+}
