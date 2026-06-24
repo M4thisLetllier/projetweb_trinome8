@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearlab - Étude des données IRVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/F1.css">
+    
+    <link rel="stylesheet" href="../css/Page1Accueil.css">
 </head>
 
 <body>
@@ -18,18 +19,18 @@
         </div>
         <nav>
             <ul>
-                <li><a href="F1.html" class="page-actuelle">Accueil</a></li>
+                <li><a href="Page1Accueil.html" class="page-actuelle">Accueil</a></li>
                 <li><a href="Page2MAP.html">Visualisation & Carte</a></li>
                 <li><a href="Page3Stat.html">Statistiques</a></li>
                 <li><a href="Page4Clustering.html">Prédictions Clusters</a></li>
+                <li><a href="Page5Classification.html">Classification IA</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="section-video-hero">
-            <video autoplay loop muted playsinline class="video-fond"> <!-- Lecture automatique, en boucle, sans son et compatible mobile -->
-            <source src="../img/Video_web.mp4" type="video/mp4">
+            <video autoplay loop muted playsinline class="video-fond"> <source src="../img/Video_web.mp4" type="video/mp4">
             </video>
             
             <div class="voile-assombrissant"></div>
@@ -46,16 +47,17 @@
             <div class="textes-centre">
                 <h2>Analyse et Exploration des données</h2>
                 <p>Cette application permet d'étudier et de valoriser les données de la base nationale des IRVE à travers des modules de traitement Big Data, de visualisations cartographiques et de prédictions IA avancées.</p>
+                
                 <a href="Page2MAP.html" class="bouton-vert">Explorer les données</a>
             </div>
 
-             <div class="boite-csv-mac"> <!-- Fenêtre de type Mac pour l'aperçu du fichier CSV -->
-                <div class="barre-haut-fenetre">  <!-- Barre supérieure de la fenêtre avec les pastilles de couleur -->
-                    <div class="pastilles">  <!-- Conteneur des pastilles de couleur -->
-                        <span class="rond rouge"></span>  <!--Pastille rouge -->
-                        <span class="rond jaune"></span> <!--Pastille jaune -->
-                        <span class="rond vert"></span> <!--Pastille verte -->
-                    </div>
+             <div class="boite-csv-mac"> 
+                <div class="barre-haut-fenetre"> 
+                     <div class="pastilles">  
+                        <span class="rond rouge"></span>
+                          <span class="rond jaune"></span>
+                           <span class="rond vert"></span> 
+                        </div>
                     <div class="titre-fichier">export_IA.csv (Aperçu)</div>
                     <div class="espace-vide"></div>
                 </div>
