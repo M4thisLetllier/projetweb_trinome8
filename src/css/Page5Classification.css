@@ -152,3 +152,41 @@ h1 {
     font-weight: 400;
     color: var(--gris-texte);
 }
+.details-resultat {
+    background-color: var(--gris-clair);
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--noir-texte);
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Espacement entre les lignes */
+}
+
+.ligne-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ligne-detail strong {
+    color: var(--gris-texte);
+    font-weight: 600;
+}
+
+.text-muted {
+    color: var(--gris-texte);
+}
+
+/* Ligne spécifique pour l'erreur de puissance */
+.erreur-texte {
+    border-top: 1px solid #d1d1d6; /* Petite ligne de séparation */
+    padding-top: 6px;
+    margin-top: 2px;
+    color: #FF3B30; /* Rouge Apple pour alerter sur l'erreur */
+    font-weight: 600;
+}
+
+.erreur-texte strong {
+    color: #FF3B30;
+}

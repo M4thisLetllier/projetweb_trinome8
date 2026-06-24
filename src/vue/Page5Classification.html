@@ -4,118 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRVE DataStudio - Classification IA</title>
-    
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/Page5Classification.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="boite-logo">
-            <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
-            <div class="texte-logo">
-                <span class="gras">PEAR</span><span class="normal">LAB</span>
+<header class="navbar">
+    <div class="boite-logo">
+        <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
+        <div class="texte-logo">
+            <span class="gras">PEAR</span><span class="normal">LAB</span>
+        </div>
+    </div>
+    <nav>
+        <a href="Page1Accueil.html" class="nav-link">Accueil</a>
+        <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
+        <a href="Page3Stat.html" class="nav-link">Statistiques</a>
+        <a href="Page4Clustering.html" class="nav-link">Prédictions Clusters</a>
+        <a href="Page5Classification.html" class="nav-link active">Classification IA</a>
+    </nav>
+</header>
+
+<main class="dashboard-ia">
+
+    <h1>Résultats Comparatifs des Modèles de Classification IA</h1>
+
+    <div class="banniere-info">
+        <div><strong>ID Sélectionné : <span id="ia-id">En attente...</span></strong></div>
+    </div>
+
+    <div class="grille-resultats">
+
+        <div class="carte-ia">
+            <h2>Variable Prédite : Type d'Implantation</h2>
+
+            <div class="bloc-modele">
+                <div class="en-tete-modele">
+                    <span id="score-rf-imp" class="score-modele vert-fort">94.2% (Précision)</span>
+                </div>
+                <div class="barre-fond">
+                    <div id="barre-rf-imp" class="barre-remplissage" style="width: 94.2%;"></div>
+                </div>
+                <div class="details-resultat">
+                    <div class="ligne-detail"><strong>Trouvée :</strong> <span id="reel-rf-imp" style="font-size: 1.15rem; font-weight: bold;">Chargement...</span></div>
+                    <div class="ligne-detail text-muted"><strong>Prédite :</strong> <span id="pred-rf-imp">Chargement...</span></div>
+                </div>
             </div>
         </div>
-        <nav>
-            <a href="Page1Accueil.html" class="nav-link">Accueil</a>
-            <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
-            <a href="Page3Stat.html" class="nav-link">Statistiques</a>
-            <a href="Page4Clustering.html" class="nav-link">Prédictions Clusters</a>
-            <a href="Page5Classification.html" class="nav-link active">Classification IA</a>
-        </nav>
-    </header>
 
-    <main class="dashboard-ia">
-        
-        <h1>Résultats Comparatifs des Modèles de Classification IA</h1>
+        <div class="carte-ia">
+            <h2>Variable Prédite : Puissance Nominale</h2>
 
-        <div class="banniere-info">
-            <div><strong>ID Sélectionné : <span id="ia-id">En attente...</span></strong></div>
-            <div>Aménageur : <span id="ia-amenageur">En attente...</span></div>
-            <div>Département : <span id="ia-dep">--</span></div>
-            <div>Puissance initiale : <span id="ia-puissance">--</span> kW</div>
-        </div>
-
-        <div class="grille-resultats">
-            
-            <div class="carte-ia">
-                <h2>Variable Prédite : Type d'Implantation</h2>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">Random Forest Classifier</span>
-                        <span id="score-rf-imp" class="score-modele vert-fort">94.2% (Précision)</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-rf-imp" class="barre-remplissage" style="width: 94.2%;"></div>
-                    </div>
-                    <div id="resultat-rf-imp" class="texte-resultat">Résultat : Chargement...</div>
+            <div class="bloc-modele">
+                <div class="en-tete-modele">
+                    <span id="score-knn-pui" class="score-modele vert-fort">91.0% Score</span>
                 </div>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">Arbre de Décision</span>
-                        <span id="score-tree-imp" class="score-modele vert-moyen">87.5%</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-tree-imp" class="barre-remplissage moyen" style="width: 87.5%;"></div>
-                    </div>
-                    <div id="resultat-tree-imp" class="texte-resultat">Résultat : Chargement...</div>
+                <div class="barre-fond">
+                    <div id="barre-knn-pui" class="barre-remplissage" style="width: 91.0%;"></div>
                 </div>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">Régression Logistique</span>
-                        <span id="score-log-imp" class="score-modele gris-faible">79.1%</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-log-imp" class="barre-remplissage faible" style="width: 79.1%;"></div>
-                    </div>
-                    <div id="resultat-log-imp" class="texte-resultat">Résultat : Chargement...</div>
+                <div class="details-resultat">
+                    <div class="ligne-detail"><strong>Trouvée :</strong> <span id="reel-knn-pui" style="font-size: 1.15rem; font-weight: bold;">Chargement...</span></div>
+                    <div class="ligne-detail text-muted"><strong>Prédite :</strong> <span id="pred-knn-pui">Chargement...</span></div>
+                    <div class="ligne-detail erreur-texte"><strong>Pourcentage d'erreur :</strong> <span id="err-knn-pui">Chargement...</span></div>
                 </div>
             </div>
-
-            <div class="carte-ia">
-                <h2>Variable Prédite : Puissance Nominale</h2>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">K-Nearest Neighbors (KNN)</span>
-                        <span id="score-knn-pui" class="score-modele vert-fort">91.0% Score</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-knn-pui" class="barre-remplissage" style="width: 91.0%;"></div>
-                    </div>
-                    <div id="resultat-knn-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
-                </div>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">Gradient Boosting</span>
-                        <span id="score-gb-pui" class="score-modele vert-moyen">89.3%</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-gb-pui" class="barre-remplissage moyen" style="width: 89.3%;"></div>
-                    </div>
-                    <div id="resultat-gb-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
-                </div>
-
-                <div class="bloc-modele">
-                    <div class="en-tete-modele">
-                        <span class="nom-modele">SVM Regressor</span>
-                        <span id="score-svm-pui" class="score-modele gris-faible">82.4%</span>
-                    </div>
-                    <div class="barre-fond">
-                        <div id="barre-svm-pui" class="barre-remplissage faible" style="width: 82.4%;"></div>
-                    </div>
-                    <div id="resultat-svm-pui" class="texte-resultat">Valeur estimée : Chargement...</div>
-                </div>
-            </div>
-
         </div>
-    </main>
-    
-    <script src="../js/Page5Classification.js"></script>
+
+    </div>
+</main>
+
+<script src="../js/Page5Classification.js"></script>
 </body>
 </html>
