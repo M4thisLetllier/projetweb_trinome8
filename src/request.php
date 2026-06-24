@@ -1,5 +1,6 @@
 <?php
 require_once('database.php');
+
 // Connexion à la bdd
 $db = dbConnect();
 if (!$db)
@@ -43,6 +44,11 @@ switch ($requestRessource) {
     case "pdc":
         require_once "controleur/visualisation_controleur.php";
         //ici l'id représente la stat demandée
+        GestionDemande($db,$requestMethod,$id,$data);
+        break;
+
+    case "dep":
+        require_once "controleur/departement_controleur.php";
         GestionDemande($db,$requestMethod,$id,$data);
         break;
 
