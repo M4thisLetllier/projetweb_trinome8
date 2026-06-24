@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Variable pour stocker la station actuellement sélectionnée par le bouton radio
+    let stationSelectionnee = null;
+
     // ==========================================
     // 1. INITIALISATION DE LA CARTE (Leaflet)
     // ==========================================
@@ -13,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Groupe pour stocker l'ensemble des marqueurs de la carte
     const markersGroup = L.layerGroup().addTo(map);
 
     // ==========================================
@@ -25,9 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupAdresse = document.getElementById("popup-adresse");
     const popupBornes = document.getElementById("popup-bornes");
     const popupPuissance = document.getElementById("popup-puissance");
+    const btnImplantation = document.getElementById("btn-predire-implantation");
 
     // ==========================================
-    // 3. REQUÊTE AJAX AVEC TON FONCTIONNEMENT AJAX.JS
+    // 3. REQUÊTE AJAX
     // ==========================================
     function chargerDonneesIRVE() {
         ajaxRequest('api-bornes.php', 'GET', function(donnees) {
@@ -44,14 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     function genererInterfaceDynamique(stations) {
         tableBody.innerHTML = ""; 
-        markersGroup.clearLayers(); // Nettoyage de la carte
+        markersGroup.clearLayers(); 
 
         stations.forEach((station) => {
             // --- A. RENDU DU TABLEAU DE GAUCHE ---
             const row = document.createElement("tr");
             
-            // Structure des cellules correspondant aux th du HTML
+            // Ajout du bouton radio dans la première cellule <td>
             row.innerHTML = `
+                <td>
+                    <input type="radio" name="select-borne" class="radio-borne" value="${station.id_pdc_itinerance || ''}">
+                </td>
                 <td class="id-point">${station.id_pdc_itinerance || '--'}</td>
                 <td>${station.nom_amenageur || '--'}</td>
                 <td>${station.denomination_dep || '--'}</td>
@@ -60,7 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${station.denomination_paiment || '--'}</td>
             `;
 
-            // Événement Hover sur le tableau de gauche
+            // Écouteur sur le bouton radio pour sauvegarder la sélection de l'objet complet
+            const radio = row.querySelector(".radio-borne");
+            radio.addEventListener("change", () => {
+                stationSelectionnee = station;
+                
+                // Optionnel : Ajouter un effet visuel persistant sur la ligne sélectionnée
+                const allRows = tableBody.querySelectorAll("tr");
+                allRows.forEach(r => r.classList.remove("selected-fixe"));
+                row.classList.add("selected-fixe");
+            });
+
+            // Événement Hover classique (conserve ton fonctionnement)
             row.addEventListener("mouseenter", () => {
                 const allRows = tableBody.querySelectorAll("tr");
                 allRows.forEach(r => r.classList.remove("selected"));
@@ -88,14 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!isNaN(lat) && !isNaN(lng)) {
                     const marker = L.marker([lat, lng]);
 
-                    // Événement Hover sur le marqueur
-                    marker.on('mouseover', () => {
-                        afficherInfosPopup(station);
-                    });
-
-                    marker.on('mouseout', () => {
-                        infoPopup.style.display = "none";
-                    });
+                    marker.on('mouseover', () => { afficherInfosPopup(station); });
+                    marker.on('mouseout', () => { infoPopup.style.display = "none"; });
 
                     markersGroup.addLayer(marker);
                 }
@@ -105,16 +116,44 @@ document.addEventListener("DOMContentLoaded", () => {
         map.invalidateSize();
     }
 
-    // ==========================================
-    // 5. AFFICHAGE ET MISE À JOUR DE LA POPUP
-    // ==========================================
     function afficherInfosPopup(donneesStation) {
         popupStationName.textContent = `Commune : ${donneesStation.nom_commune || '--'}`;
         popupAdresse.textContent = `Prise : ${donneesStation.denomination_prise || '--'}`;
         popupBornes.textContent = `Paiement : ${donneesStation.denomination_paiment || '--'}`;
         popupPuissance.textContent = `${donneesStation.puissance_nominale || '--'} kW`;
-
         infoPopup.style.display = "block";
+    }
+
+    // ==========================================
+    // 5. GESTION DE L'ENVOI POST AU CLIC SUR LE BOUTON
+    // ==========================================
+    if (btnImplantation) {
+        btnImplantation.addEventListener("click", () => {
+            if (!stationSelectionnee) {
+                alert("Veuillez sélectionner une borne de recharge à l'aide des boutons radio avant de lancer la prédiction !");
+                return;
+            }
+
+            // Création d'un formulaire virtuel/caché en méthode POST
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "predictions-implantation.html"; // La page qui recevra les données POST
+
+            // Boucle sur les propriétés de la station sélectionnée pour créer des inputs cachés
+            for (const key in stationSelectionnee) {
+                if (stationSelectionnee.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement("input");
+                    hiddenField.type = "hidden";
+                    hiddenField.name = key;
+                    hiddenField.value = stationSelectionnee[key];
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            // Ajout du formulaire au document et soumission (redirection automatique)
+            document.body.appendChild(form);
+            form.submit();
+        });
     }
 
     chargerDonneesIRVE();
