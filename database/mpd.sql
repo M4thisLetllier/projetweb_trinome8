@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS pdc;
 DROP TABLE IF EXISTS station;
 DROP TABLE IF EXISTS commune;
 DROP TABLE IF EXISTS departement;
-DROP TABLE IF EXISTS implatation;
+DROP TABLE IF EXISTS implantation;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS operateur;
 DROP TABLE IF EXISTS amenageur;
@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS Accessibilite_pmr;
 DROP TABLE IF EXISTS type_paiment;
 DROP TABLE IF EXISTS restriction_gabarit;
 DROP TABLE IF EXISTS Enseigne;
-DROP TABLE IF EXISTS horraire;
+DROP TABLE IF EXISTS horaire;
 DROP TABLE IF EXISTS condition_acces;
 DROP TABLE IF EXISTS type_prise;
 
@@ -48,11 +48,10 @@ CREATE TABLE condition_acces (
 -- ----------------------------
 -- Table: horraire
 -- ----------------------------
-CREATE TABLE horraire (
-                          id_horraire INT NOT NULL AUTO_INCREMENT,
-                          denomination_horraire VARCHAR(50) NOT NULL,
-                          CONSTRAINT horraire_PK PRIMARY KEY (id_horraire),
-                          CONSTRAINT id_horraire_UNQ UNIQUE (id_horraire)
+CREATE TABLE horaire (
+                          id_horaire INT NOT NULL AUTO_INCREMENT,
+                          denomination_horaire VARCHAR(100) NOT NULL,
+                          CONSTRAINT horaire_PK PRIMARY KEY (id_horaire)
 )ENGINE=InnoDB;
 
 
@@ -104,7 +103,7 @@ CREATE TABLE Accessibilite_pmr (
 -- Table: amenageur
 -- ----------------------------
 CREATE TABLE amenageur (
-                           id_amenageur INT NOT NULL,
+                           id_amenageur INT NOT NULL AUTO_INCREMENT,
                            nom_amenageur VARCHAR(128) NOT NULL,
                            contact_amenageur VARCHAR(128),
                            CONSTRAINT amenageur_PK PRIMARY KEY (id_amenageur),
@@ -116,7 +115,7 @@ CREATE TABLE amenageur (
 -- Table: operateur
 -- ----------------------------
 CREATE TABLE operateur (
-                           id_operateur INT NOT NULL,
+                           id_operateur INT NOT NULL AUTO_INCREMENT,
                            nom_operateur VARCHAR(128) NOT NULL,
                            contact_operateur VARCHAR(128),
                            telephone_operateur VARCHAR(128),
@@ -137,9 +136,9 @@ CREATE TABLE region (
 -- ----------------------------
 -- Table: implatation
 -- ----------------------------
-CREATE TABLE implatation (
-                             id_implantation INT NOT NULL,
-                             denomination_implatation VARCHAR(128) NOT NULL,
+CREATE TABLE implantation (
+                             id_implantation INT NOT NULL AUTO_INCREMENT,
+                             denomination_implantation VARCHAR(128) NOT NULL,
                              CONSTRAINT implatation_PK PRIMARY KEY (id_implantation)
 )ENGINE=InnoDB;
 
@@ -185,16 +184,15 @@ CREATE TABLE station (
                          id_operateur INT NOT NULL,
                          code_commune_insee INT NOT NULL,
                          id_enseigne INT NOT NULL,
-                         id_horraire INT,
+                         id_horaire INT,
                          CONSTRAINT station_PK PRIMARY KEY (id_station_itinerance),
-                         CONSTRAINT station_id_implantation_FK FOREIGN KEY (id_implantation) REFERENCES implatation (id_implantation),
+                         CONSTRAINT station_id_implantation_FK FOREIGN KEY (id_implantation) REFERENCES implantation (id_implantation),
                          CONSTRAINT station_id_amenageur_FK FOREIGN KEY (id_amenageur) REFERENCES amenageur (id_amenageur),
                          CONSTRAINT station_id_operateur_FK FOREIGN KEY (id_operateur) REFERENCES operateur (id_operateur),
                          CONSTRAINT station_code_commune_insee_FK FOREIGN KEY (code_commune_insee) REFERENCES commune (code_commune_insee),
                          CONSTRAINT station_id_enseigne_FK FOREIGN KEY (id_enseigne) REFERENCES Enseigne (id_enseigne),
-                         CONSTRAINT station_id_horraire_FK FOREIGN KEY (id_horraire) REFERENCES horraire (id_horraire)
+                         CONSTRAINT station_id_horaire_FK FOREIGN KEY (id_horaire) REFERENCES horaire (id_horaire)
 )ENGINE=InnoDB;
-
 
 -- ----------------------------
 -- Table: pdc
