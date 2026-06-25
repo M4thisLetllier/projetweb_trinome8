@@ -19,6 +19,7 @@ class pdc
             GROUP_CONCAT(DISTINCT tp.denomination_prise SEPARATOR ', ') AS denomination_prise,
             MAX(c.nom_commune) AS nom_commune,
             GROUP_CONCAT(DISTINCT tpay.denomination_paiment SEPARATOR ', ') AS denomination_paiment,
+            MAX(i.denomination_implantation) AS denomination_implantation,
             MAX(p.latitude_pdc) AS latitude_pdc,
             MAX(p.longitude_pdc) AS longitude_pdc
           FROM pdc p
@@ -26,6 +27,7 @@ class pdc
           JOIN amenageur a ON s.id_amenageur = a.id_amenageur
           JOIN commune c ON s.code_commune_insee = c.code_commune_insee
           JOIN departement d ON c.num_dep = d.num_dep
+          LEFT JOIN implantation i ON s.id_implantation = i.id_implantation
           LEFT JOIN Avoir av ON p.id_pdc_itinerance = av.id_pdc_itinerance
           LEFT JOIN type_prise tp ON av.id_prise = tp.id_prise
           LEFT JOIN PAYER pay ON p.id_pdc_itinerance = pay.id_pdc_itinerance
@@ -37,6 +39,7 @@ class pdc
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
     /** Renvoie les dix premiers point de charge
      * @param PDO $db base de données
      * @return mixed 10 données

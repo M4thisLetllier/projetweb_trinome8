@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <div class="boite-logo">
+        <div class="bloc-logo">
             <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
             <div class="texte-logo">
                 <span class="gras">PEAR</span><span class="normal">LAB</span>
@@ -23,76 +23,82 @@
                 <li><a href="Page2MAP.html">Visualisation & Carte</a></li>
                 <li><a href="Page3Stat.html">Statistiques</a></li>
                 <li><a href="Page4Clustering.html">Prédictions Clusters</a></li>
-                <li><a href="Page5Classification.html">Classification IA</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="section-video-hero">
-            <video autoplay loop muted playsinline class="video-fond"> <source src="../img/Video_web.mp4" type="video/mp4">
+        <section class="banniere-accueil">
+            <video autoplay loop muted playsinline class="video-fond"> 
+                <source src="../img/Video_web.mp4" type="video/mp4">
             </video>
             
-            <div class="voile-assombrissant"></div>
+            <div class="filtre-sombre"></div>
 
-            <div class="contenu-hero">
-                <div class="mention-isen-blanche">PROJET FISE3 2026 - ISEN OUEST (CAEN)</div>
+            <div class="contenu-banniere">
+                <div class="badge-ecole">PROJET FISE3 2026 - ISEN OUEST (CAEN)</div>
                 <h1>Cartographie Interactive IRVE</h1>
                 <p>La meilleure visualisation du réseau électrique national.</p>
-                <a href="#analyse" class="bouton-scroll"> Découvrir l'analyse ↓ </a>
+                <a href="#analyse" class="bouton-ancrage"> Découvrir l'analyse ↓ </a>
             </div>
         </section>
 
-        <section id="analyse" class="section-donnees">
-            <div class="textes-centre">
+        <section id="analyse" class="section-presentation">
+            <div class="texte-introductif">
                 <h2>Analyse et Exploration des données</h2>
-                <p>Cette application permet d'étudier et de valoriser les données de la base nationale des IRVE à travers des modules de traitement Big Data, de visualisations cartographiques et de prédictions IA avancées.</p>
-                
-                <a href="Page2MAP.html" class="bouton-vert">Explorer les données</a>
-            </div>
+                <p>
+                    Cette application permet d'étudier et de valoriser les données de la base nationale des IRVE à travers des modules de traitement Big Data, de visualisations cartographiques et de prédictions IA avancées. 
+                    En centralisant des dizaines de milliers de points de charge, Pearlab offre une vue d'ensemble stratégique du déploiement électrique en France. 
+                    Notre objectif est de faciliter la compréhension des infrastructures actuelles pour mieux accompagner la transition énergétique de demain.
+                </p>
 
-             <div class="boite-csv-mac"> 
-                <div class="barre-haut-fenetre"> 
-                     <div class="pastilles">  
-                        <span class="rond rouge"></span>
-                          <span class="rond jaune"></span>
-                           <span class="rond vert"></span> 
-                        </div>
-                    <div class="titre-fichier">export_IA.csv (Aperçu)</div>
-                    <div class="espace-vide"></div>
+                <div class="cadre-tableau-apercu">
+                    <div class="en-tete-apercu">
+                        <h3>Aperçu de la base de données</h3>
+                    </div>
+                    <div class="conteneur-tableau">
+                        <table class="tableau-donnees">
+                            <thead>
+                                <tr>
+                                    <th>ID PDC</th>
+                                    <th>Aménageur</th>
+                                    <th>Département</th>
+                                    <th>Puissance</th>
+                                    <th>Type Prise</th>
+                                    <th>Type Paiement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DKMONE3785709</td>
+                                    <td>SOLVEO ENERGIES</td>
+                                    <td>Gers</td>
+                                    <td><strong>150 kW</strong></td>
+                                    <td>Combo CCS</td>
+                                    <td>À l'acte, CB</td>
+                                </tr>
+                                <tr>
+                                    <td>DKMONE3785711</td>
+                                    <td>SOLVEO ENERGIES</td>
+                                    <td>Gers</td>
+                                    <td><strong>150 kW</strong></td>
+                                    <td>Combo CCS</td>
+                                    <td>À l'acte, CB</td>
+                                </tr>
+                                <tr>
+                                    <td>DKMONE3785713</td>
+                                    <td>SOLVEO ENERGIES</td>
+                                    <td>Gers</td>
+                                    <td><strong>11 kW</strong></td>
+                                    <td>Type 2</td>
+                                    <td>À l'acte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="zone-tableau-scroll">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID_Station</th>
-                                <th>Aménageur</th>
-                                <th>Puissance</th>
-                                <th>Département</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>FR-881-01</td>
-                                <td>TotalEnergies</td>
-                                <td><strong>50 kW</strong></td>
-                                <td><span class="badge-dep">29 (Finistère)</span></td>
-                            </tr>
-                            <tr>
-                                <td>FR-142-03</td>
-                                <td>Ionity France</td>
-                                <td><strong>350 kW</strong></td>
-                                <td><span class="badge-dep">14 (Calvados)</span></td>
-                            </tr>
-                            <tr>
-                                <td>FR-443-12</td>
-                                <td>EDF Pulse</td>
-                                <td><strong>22 kW</strong></td>
-                                <td><span class="badge-dep">44 (Loire-Atl.)</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+                <a href="Page2MAP.html" class="bouton-principal">Explorer la base de données intégrale</a>
             </div>
         </section>
     </main>

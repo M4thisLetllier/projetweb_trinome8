@@ -5,29 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRVE DataStudio - Visualisation & Carte</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">IRVE DataStudio</div>
+<header>
+        <div class="bloc-logo">
+            <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
+            <div class="texte-logo">
+                <span class="gras">PEAR</span><span class="normal">LAB</span>
+            </div>
+        </div>
         <nav>
-            <a href="Page1Accueil.html" class="nav-link">Accueil</a>
-            <a href="Page2MAP.html" class="nav-link active">Visualisation & Carte</a>
-            <a href="Page3Stat.html" class="nav-link">Statistiques</a>
-            <a href="Page4Clustering.html" class="nav-link">Predictions Clusters IA</a>
-            <a href="Page5Classification.html" class="nav-link">Classification IA</a>
+            <ul>
+                <li><a href="Page1Accueil.html">Accueil</a></li>
+                <li><a href="Page2MAP.html" class="page-actuelle">Visualisation & Carte</a></li>
+                <li><a href="Page3Stat.html">Statistiques</a></li>
+                <li><a href="Page4Clustering.html">Prédictions Clusters</a></li>
+                </ul>
         </nav>
     </header>
 
-    <main class="dashboard-container">
+    <main class="dashboard-global">
         
-        <div class="main-content">
-            <section class="table-section">
+        <div class="conteneur-carte-tableau">
+            
+            <section class="section-tableau">
                 <h2>Exploration des points de charge</h2>
-                <div class="table-wrapper">
-                    <table id="irve-table">
+                <div class="table-responsive">
+                    <table id="irve-table" class="tableau-donnees">
                         <thead>
                             <tr>
                                 <th>Sélection</th>
@@ -44,33 +52,30 @@
                 </div>
             </section>
 
-            <section class="map-section">
+            <section class="section-carte">
                 <div id="map">
-                    <div id="info-popup" class="info-popup">
+                    <div id="info-popup" class="info-popup-apple">
                         <h3 id="popup-station-name">Station : --</h3>
                         <ul>
-                            <li><strong>1. Type de prise :</strong> <span id="popup-adresse">--</span></li>
-                            <li><strong>2. Type de paiements :</strong> <span id="popup-bornes">--</span></li>
-                            <li><strong>3. Puissance Max :</strong> <span id="popup-puissance">--</span></li>
-                            <li><strong>4. Accès :</strong> 24h/24 - 7j/7</li>
+                            <li><strong>Type de prise :</strong> <span id="popup-adresse">--</span></li>
+                            <li><strong>Paiements :</strong> <span id="popup-bornes">--</span></li>
+                            <li><strong>Puissance Max :</strong> <span id="popup-puissance">--</span></li>
+                            <li><strong>Accès :</strong> 24h/24 - 7j/7</li>
                         </ul>
                     </div>
                 </div>
             </section>
+            
+        </div>
+        <div class="barre-actions">
+            <a href="Page5Classification.html" class="bouton-vert" id="btn-prediction-ia">Prédiction IA</a>
         </div>
 
-        <footer class="action-bar">
-            <a href="Page4Clustering.html" class="btn btn-filled">Prédire les clusters</a>
-            
-            <a href="#" class="btn btn-filled" id="btn-predire-implantation">Prédire l'implantation</a>
-            <a href="#" class="btn btn-filled" id="btn-predire-puissance">Prédire la puissance</a>
-            
-            <div class="project-footer">
-                Projet Big Data / IA / Web — FISE3 — 2026
-            </div>
-        </footer>
-
     </main>
+
+    <footer>
+        <p>Projet Big Data / IA / Web — FISE3 — 2026</p>
+    </footer>
     
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="../js/ajax.js"></script>

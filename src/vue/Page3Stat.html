@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRVE DataStudio - Statistiques</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    
     <script src="../js/ajax.js"></script>
-    
-    
     <script src="../js/page3stats.js"></script>
 </head>
 <body>
 
-    <header class="navbar">
-    <div class="logo-container">
-        <img src="../IMG_LOGO/Logo_projet.png" alt="Logo" class="logo-img">
-        <div class="logo">IRVE DataStudio</div>
-    </div>
-    <nav>
-        <a href="Page1Accueil.html" class="nav-link">Accueil</a>
-        <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
-        <a href="#" class="nav-link active">Statistiques</a>
-        <a href="Page4Clustering.html" class="nav-link">Predictions Clusters IA</a>
-    </nav>
-</header>
+    <header>
+        <div class="bloc-logo">
+            <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
+            <div class="texte-logo">
+                <span class="gras">PEAR</span><span class="normal">LAB</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Page1Accueil.html">Accueil</a></li>
+                <li><a href="Page2MAP.html">Visualisation & Carte</a></li>
+                <li><a href="Page3Stat.html" class="page-actuelle">Statistiques</a></li>
+                <li><a href="Page4Clustering.html">Prédictions Clusters</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main class="dashboard-container">
+    <main class="dashboard-global">
         
         <header class="main-header">
             <h1>Statistiques des Infrastructures de Recharge</h1>
@@ -34,7 +39,7 @@
                 <label for="select-departement">Filtrer par département :</label>
                 <select id="select-departement">
                     <option value="">-- Sélectionner un département --</option>
-                    </select>
+                </select>
             </div>
         </header>
 
@@ -73,7 +78,7 @@
             <div class="legend-container">
                 <div class="legend-item">
                     <span class="dot rapide-dot"></span>
-                    Rapide (&gt;50kW) : &nbsp;<strong id="txt-rapide">- %</strong>
+                    Rapide (>50kW) : &nbsp;<strong id="txt-rapide">- %</strong>
                 </div>
                 <div class="legend-item">
                     <span class="dot accelere-dot"></span>
@@ -81,14 +86,16 @@
                 </div>
                 <div class="legend-item">
                     <span class="dot normale-dot"></span>
-                    Normale (&lt;7.4kW) : &nbsp;<strong id="txt-normale">- %</strong>
+                    Normale (<7.4kW) : &nbsp;<strong id="txt-normale">- %</strong>
                 </div>
             </div>
         </section>
 
-        <footer class="project-footer">
-            ISEN A3 - Projet Big Data / IA / Web
-        </footer>
     </main>
+
+    <footer>
+        <p>Projet Big Data / IA / Web — FISE3 — 2026</p>
+    </footer>
+
 </body>
 </html>

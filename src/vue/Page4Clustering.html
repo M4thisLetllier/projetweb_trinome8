@@ -3,120 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRVE DataStudio - Classification IA</title>
+    <title>IRVE DataStudio - Prédictions Clusters IA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script src="../js/ajax.js"></script>
-
-    <script src="../js/Page4Map.js"></script>
-    <style>
-        /* Style spécifique pour la boîte de légende des clusters */
-        .cluster-legend {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-        .cluster-legend h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-        .legend-row {
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
-        }
-        .cluster-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-            display: inline-block;
-        }
-    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo-container">
-            <img src="../IMG_LOGO/Logo_projet.png" alt="Logo" class="logo-img">
-            <div class="logo">IRVE DataStudio</div>
+    <header>
+        <div class="bloc-logo">
+            <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
+            <div class="texte-logo">
+                <span class="gras">PEAR</span><span class="normal">LAB</span>
+            </div>
         </div>
         <nav>
-
-            <a href="Page1Accueil.html" class="nav-link">Accueil</a>
-            <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
-            <a href="Page3Stat.html" class="nav-link">Statistiques</a>
-            <a href="#" class="nav-link active">Classification IA</a>
+            <ul>
+                <li><a href="Page1Accueil.html">Accueil</a></li>
+                <li><a href="Page2MAP.html">Visualisation & Carte</a></li>
+                <li><a href="Page3Stat.html">Statistiques</a></li>
+                <li><a href="Page4Clustering.html" class="page-actuelle">Prédictions Clusters</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main class="dashboard-container">
-        <div>
-        <h1>Résultat du Clustering IA (Script Python)</h1>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">
-            Les points de charge sont cartographiés et colorisés selon leur groupe d'appartenance.
-        </p>
-    </div>
-
-    <div class="ia-manual-form" style="display: flex; gap: 0.75rem; align-items: center; background: #f0f4f2; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
-        <strong style="font-size: 0.85rem; color: var(--text-dark);">Tester des coordonnées :</strong>
-        <input type="number" id="manual-lat" step="any" placeholder="Latitude (ex: 48.85)" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: 4px; width: 140px; font-size: 0.85rem;">
-        <input type="number" id="manual-lon" step="any" placeholder="Longitude (ex: 2.35)" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border-color); border-radius: 4px; width: 140px; font-size: 0.85rem;">
-        <button id="btn-predire-unitaire" class="btn-filled" style="padding: 0.4rem 1rem; font-size: 0.85rem; border-radius: 4px;">Prédire & Afficher</button>
-    </div>
-
-        <div class="map-section" style="height: 600px; flex: none;">
-
-            <div class="cluster-legend">
-                <h3>Légende des Clusters</h3>
-
-                <div class="legend-row">
-                    <span class="cluster-dot" style="background-color: #2e7d32;"></span>
-                    Cluster 1 : Ouest
-                </div>
-
-                <div class="legend-row">
-                    <span class="cluster-dot" style="background-color: #1565c0;"></span>
-                    Cluster 2 : Sud Est
-                </div>
-
-                <div class="legend-row">
-                    <span class="cluster-dot" style="background-color: #ef6c00;"></span>
-                    Cluster 3 : Nord
-                </div>
-
-                <div class="legend-row">
-                    <span class="cluster-dot" style="background-color: #9c27b0;"></span>
-                    Cluster 4 : Sud Ouest
-                </div>
-
-                <div class="legend-row">
-                    <span class="cluster-dot" style="background-color: #795548;"></span>
-                    Cluster 5 : Est
-                </div>
-
-            </div>
-
-            <div id="map" style="height: 100%; width: 100%;"></div>
+    <main class="dashboard-global">
+        
+        <div class="en-tete-page">
+            <h1>Résultat du Clustering IA (Script Python)</h1>
+            <p>Les points de charge sont cartographiés et colorisés selon leur groupe d'appartenance géographique.</p>
         </div>
 
-        <footer class="project-footer">
-            ISEN A3 - Projet Big Data / IA / Web
-        </footer>
+        <div class="barre-prediction-manuelle">
+            <strong>Tester des coordonnées :</strong>
+            <input type="number" id="manual-lat" step="any" placeholder="Latitude (ex: 48.85)">
+            <input type="number" id="manual-lon" step="any" placeholder="Longitude (ex: 2.35)">
+            <button id="btn-predire-unitaire" class="bouton-vert">Prédire & Afficher</button>
+        </div>
+
+        <div class="conteneur-carte-cluster">
+            <div class="legende-clusters">
+                <h3>Légende des Clusters</h3>
+
+                <div class="ligne-legende">
+                    <span class="point-cluster cluster-1"></span>
+                    Cluster 1 : Ouest
+                </div>
+                <div class="ligne-legende">
+                    <span class="point-cluster cluster-2"></span>
+                    Cluster 2 : Sud Est
+                </div>
+                <div class="ligne-legende">
+                    <span class="point-cluster cluster-3"></span>
+                    Cluster 3 : Nord
+                </div>
+                <div class="ligne-legende">
+                    <span class="point-cluster cluster-4"></span>
+                    Cluster 4 : Sud Ouest
+                </div>
+                <div class="ligne-legende">
+                    <span class="point-cluster cluster-5"></span>
+                    Cluster 5 : Est
+                </div>
+            </div>
+
+            <div id="map"></div>
+        </div>
+
     </main>
+<footer>
+        <p>Projet Big Data / IA / Web — FISE3 — 2026</p>
+    </footer>
 
-
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/ajax.js"></script>
+    <script src="../js/Page4Map.js"></script>
 
 </body>
 </html>
