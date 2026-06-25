@@ -1,3 +1,6 @@
 .idea/
 database/.idea
 database/IRVE_clean_FINAL.csv
+database/base-officielle-codes-postaux.csv
+database/departements-france.csv
+
