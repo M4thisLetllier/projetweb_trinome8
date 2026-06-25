@@ -51,6 +51,7 @@ switch ($requestRessource) {
         require_once "controleur/departement_controleur.php";
         GestionDemande($db,$requestMethod,$id,$data);
         break;
+
     case "clusters":
         require_once "controleur/clusters_controleur.php";
         GestionDemande($db, $requestMethod, $id, $data);

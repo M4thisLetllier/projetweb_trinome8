@@ -21,6 +21,8 @@ DROP TABLE IF EXISTS Enseigne;
 DROP TABLE IF EXISTS horaire;
 DROP TABLE IF EXISTS condition_acces;
 DROP TABLE IF EXISTS type_prise;
+DROP TABLE IF EXISTS cluster;
+
 
 -- On réactive la sécurité des clés étrangères
 SET FOREIGN_KEY_CHECKS = 1;
@@ -239,3 +241,10 @@ CREATE TABLE PAYER (
                        CONSTRAINT PAYER_id_paiment_FK FOREIGN KEY (id_paiment) REFERENCES type_paiment (id_paiment)
 )ENGINE=InnoDB;
 
+CREATE TABLE cluster (
+                         id_cluster INT NOT NULL,
+                         latitude_centroide DECIMAL(10,5) NOT NULL,
+                         longitude_centroide DECIMAL(10,5) NOT NULL,
+                         couleur VARCHAR(20) NOT NULL,
+                         CONSTRAINT cluster_PK PRIMARY KEY (id_cluster)
+) ENGINE=InnoDB;

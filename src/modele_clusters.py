@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import argparse
-import pickle
+import joblib
 import sys
 import pandas as pd
 import warnings
@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
         # 1. Charger le modèle pré-entraîné
         with open('modele_kmeans_k5.pkl', 'rb') as f:
-            model = pickle.load(f)
+            model = joblib.load(f)
 
         # 2. Préparer la donnée (L'ordre des colonnes doit être exactement celui de l'entraînement : lon, lat)
         data = pd.DataFrame([[args.longitude, args.latitude]], columns=['lon', 'lat'])

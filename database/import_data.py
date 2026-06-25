@@ -102,7 +102,7 @@ def main():
                 )
 
             except Exception as e:
-                print(f"⚠️ Erreur à la ligne {row_idx} ({row.get('nom_de_la_commune', 'Inconnu')}) : {e}")
+                print(f"Erreur à la ligne {row_idx} ({row.get('nom_de_la_commune', 'Inconnu')}) : {e}")
 
     # --- 4. PRISES et Paiment table intermédiaire donc on les précharges ---
     prises_types = {'prise_type_ef': "Type EF", 'prise_type_2': "Type 2", 'prise_type_combo_ccs': "Combo CCS",

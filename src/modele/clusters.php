@@ -12,8 +12,8 @@ class clusters
     {
         // Note : Si tu as ajouté une colonne 'cluster' dans ta table 'pdc', n'oublie pas de la rajouter dans le SELECT !
         $stmt = $db->prepare("
-            SELECT id_pdc_itinerance, puissance_nominale, longitude_pdc, latitude_pdc 
-            FROM pdc;
+            SELECT * 
+            FROM cluster;
         ");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ class clusters
         $escapedLon = escapeshellarg($lon);
 
         // Exécution de la commande système vers ton fichier Python
-        $command = "python3 clusters.py -lat {$escapedLat} -lon {$escapedLon}";
+        $command = "python3 modele_clusters.py -lat {$escapedLat} -lon {$escapedLon} 2>&1";
         $output = shell_exec($command);
 
         if ($output !== null) {
