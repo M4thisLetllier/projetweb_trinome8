@@ -1,52 +1,128 @@
-/* --- Variables spécifiques à la page de classification --- */
-:root {
+/* ==========================================================================
+   CSS COMPLET ET AUTONOME POUR LA PAGE 5 (Classification IA)
+   ========================================================================== */
+
+/* --- Variables de couleurs et polices --- */
+:root { 
     --vert-isen: #34C759;
-    --vert-clair: #E8F5E9;
-    --gris-clair: #F2F2F7;
-    --gris-moyen: #E5E5EA;
-    --gris-texte: #8E8E93;
     --noir-texte: #1D1D1F;
+    --gris-texte: #86868B;
+    --gris-bordure: #E5E5EA;
+    --blanc-casse: #F5F5F7;
+    --ombre-legere: 0px 20px 40px rgba(0,0,0,0.08);
+    --police-principale: 'Inter', sans-serif;
+    
+    /* Variables spécifiques à la page 5 */
+    --vert-banniere: #E8F5E9;
+    --fond-details: #F2F2F7;
+    --rouge-alerte: #FF3B30;
+}
+
+/* --- Base --- */
+html { 
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #F5F5F7;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0; 
+    padding: 0; 
+    font-family: var(--police-principale);
+    background-color: var(--blanc-casse);
+    color: var(--noir-texte); 
 }
 
-/* --- Layout Principal --- */
+a { 
+    text-decoration: none; 
+    color: inherit; 
+}
+
+/* --- Menu de navigation (Header harmonisé) --- */
+header {
+    background-color: rgba(255, 255, 255, 0.9); 
+    backdrop-filter: blur(10px); 
+    border-bottom: 1px solid var(--gris-bordure);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 12px 40px;
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    font-family: var(--police-principale);
+    letter-spacing: -0.5px;
+}
+
+.boite-logo { 
+    display: flex; 
+    align-items: center;
+    gap: 8px;
+}
+
+.boite-logo img { 
+    height: 70px; 
+    width: auto; 
+    margin-right: -5px; 
+    mix-blend-mode: multiply; 
+}
+
+.texte-logo { font-size: 22px; letter-spacing: -0.5px; margin-top: 5px; }
+.texte-logo .gras { font-weight: 900; color: #1D1D1F; }
+.texte-logo .normal { font-weight: 400; color: #86868B; }
+
+nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+nav a { font-weight: 600; font-size: 14px; color: #86868B; transition: color 0.3s ease; }
+nav a:hover, nav a.page-actuelle { color: var(--vert-isen); }
+nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom: 4px; }
+
+/* --- Layout Principal du Dashboard IA --- */
 .dashboard-ia {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
+    animation: fade-in 0.8s ease-out;
 }
 
-h1 {
-    font-size: 28px;
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-ia h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
     color: var(--noir-texte);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 /* --- Bannière d'Information --- */
 .banniere-info {
     display: flex;
-    flex-wrap: wrap;       /* Permet de passer à la ligne si l'écran est petit */
-    gap: 30px;             /* Crée un bel espace de 30px entre chaque info */
-    justify-content: center; /* Centre le tout */
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
     align-items: center;
-    padding: 15px 20px;
-    background-color: #e9f5ec; /* Un fond vert très clair (ajuste selon ton thème) */
-    border-radius: 8px;
-    border: 1px solid #c3e6cb;
-    margin-bottom: 30px;
-}
-.banniere-info strong {
-    color: #1B5E20;
-    font-size: 16px;
+    padding: 15px 25px;
+    background-color: var(--vert-banniere);
+    border-radius: 12px;
+    border: 1px solid rgba(52, 199, 89, 0.2);
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(52, 199, 89, 0.05);
 }
 
-/* --- Grille des Cartes (Flexbox) --- */
+.banniere-info div {
+    color: var(--noir-texte);
+    font-size: 15px;
+}
+
+.banniere-info strong {
+    color: #1B5E20;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+/* --- Grille des Cartes --- */
 .grille-resultats {
     display: flex;
     gap: 30px;
@@ -56,20 +132,23 @@ h1 {
 /* --- Style des Cartes Blanches --- */
 .carte-ia {
     background-color: #FFFFFF;
-    border-radius: 16px;
-    padding: 30px;
+    border-radius: 20px;
+    padding: 35px;
     flex: 1; 
     min-width: 400px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: var(--ombre-legere);
+    border: 1px solid var(--gris-bordure);
 }
 
 .carte-ia h2 {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
     margin-top: 0;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 1px solid var(--gris-moyen);
+    border-bottom: 1px solid var(--gris-bordure);
     color: var(--noir-texte);
+    letter-spacing: -0.5px;
 }
 
 /* --- Les Blocs de Modèles d'IA --- */
@@ -81,92 +160,50 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 8px;
-}
-
-.nom-modele {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--noir-texte);
+    margin-bottom: 12px;
 }
 
 .score-modele {
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 800;
+    font-size: 15px;
 }
 
-/* Classes pour les couleurs de scores */
 .vert-fort { color: var(--vert-isen); }
-.vert-moyen { color: #6FCF97; }
-.gris-faible { color: #A9A9A9; }
 
 /* --- La Barre de Progression --- */
 .barre-fond {
     height: 10px;
-    background-color: var(--gris-clair);
+    background-color: var(--gris-bordure);
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .barre-remplissage {
     height: 100%;
     background-color: var(--vert-isen);
     border-radius: 5px;
-    transition: width 1s ease-in-out; /* Animation d'apparition */
+    transition: width 1s ease-in-out; 
 }
-
-.barre-remplissage.moyen { background-color: #6FCF97; }
-.barre-remplissage.faible { background-color: #A9A9A9; }
 
 /* --- Le Texte de Résultat --- */
-.texte-resultat {
-    font-size: 13px;
-    color: var(--gris-texte);
-}
-
-.boite-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.boite-logo img {
-    height: 40px; /* Force la hauteur de l'image SVG */
-    width: auto;
-    mix-blend-mode: multiply;
-}
-
-.texte-logo {
-    font-size: 22px;
-    letter-spacing: -0.5px;
-    margin-top: 5px;
-}
-
-.texte-logo .gras {
-    font-weight: 900;
-    color: var(--noir-texte);
-}
-
-.texte-logo .normal {
-    font-weight: 400;
-    color: var(--gris-texte);
-}
 .details-resultat {
-    background-color: var(--gris-clair);
-    padding: 10px 15px;
-    border-radius: 6px;
-    margin-top: 10px;
-    font-size: 13px;
+    background-color: var(--fond-details);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
     color: var(--noir-texte);
     display: flex;
     flex-direction: column;
-    gap: 6px; /* Espacement entre les lignes */
+    gap: 8px;
 }
 
 .ligne-detail {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .ligne-detail strong {
@@ -174,19 +211,20 @@ h1 {
     font-weight: 600;
 }
 
-.text-muted {
-    color: var(--gris-texte);
+.valeur-trouvee {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--noir-texte);
 }
 
-/* Ligne spécifique pour l'erreur de puissance */
 .erreur-texte {
-    border-top: 1px solid #d1d1d6; /* Petite ligne de séparation */
-    padding-top: 6px;
-    margin-top: 2px;
-    color: #FF3B30; /* Rouge Apple pour alerter sur l'erreur */
-    font-weight: 600;
+    border-top: 1px solid var(--gris-bordure);
+    padding-top: 10px;
+    margin-top: 5px;
+    color: var(--rouge-alerte);
+    font-weight: 700;
 }
 
 .erreur-texte strong {
-    color: #FF3B30;
+    color: var(--rouge-alerte);
 }

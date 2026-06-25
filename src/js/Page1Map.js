@@ -2,7 +2,6 @@
  * IRVE DataStudio - Contrôleur JavaScript Principal
  * FISE3 - 2026
  */
-
 document.addEventListener("DOMContentLoaded", () => {
     let stationSelectionnee = null;
     let toutesLesBornes = [];
@@ -32,61 +31,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnPuissance = document.getElementById("btn-predire-puissance");
 
     // ==========================================
-    // 3. REQUÊTES AJAX SANS PARAMÈTRES ?action= (FORMAT PATH INFO)
+    // 3. REQUÊTES AJAX
     // ==========================================
-    
-    // Étape A : Charger TOUTES les bornes au démarrage pour garnir la CARTE
     function initialiserCarteEtBornes() {
-        // Ciblage de la ressource globale /pdc sans aucun attribut de données
         ajaxRequest('../request.php/pdc', 'GET', function(donnees) {
             if (donnees && donnees.length > 0 && !donnees.error) {
                 toutesLesBornes = donnees;
                 afficherTousLesMarqueurs(toutesLesBornes);
-                
-                // Une fois la carte dessinée, on lance le premier filtrage du tableau
                 mettreAJourTableauFiltre();
             }
         }, {}); 
     }
 
-    // Étape B : Demander au serveur uniquement 10 bornes pour le TABLEAU
-   // Étape B : Demander au serveur les bornes de la zone, garnir la carte et limiter le tableau à 10
-    // Étape B : Charger les données via la route globale 'pdc' et filtrer en JavaScript
     function mettreAJourTableauFiltre() {
-        // 1. On récupère les limites géométriques actuelles de la carte (la boîte visible)
         const limites = map.getBounds();
-
-        // 2. On appelle la ressource 'pdc' (qui contient toutes tes variables Aménageur, Prises, etc.)
         ajaxRequest('../request.php/pdc', 'GET', function(toutesLesBornesDuReseau) {
             if (toutesLesBornesDuReseau && !toutesLesBornesDuReseau.error) {
-                
-                // 3. Filtrage en JavaScript : on ne garde que les bornes situées dans la zone visible à l'écran
                 const bornesVisibles = toutesLesBornesDuReseau.filter(station => {
                     if (!station.latitude_pdc || !station.longitude_pdc) return false;
-                    
                     const lat = parseFloat(station.latitude_pdc);
                     const lng = parseFloat(station.longitude_pdc);
-                    
-                    // On vérifie si les coordonnées de la borne sont à l'intérieur des limites de la carte
                     return limites.contains([lat, lng]);
                 });
-
-                // 4. On rafraîchit les marqueurs de la carte avec les bornes de cette zone
                 afficherTousLesMarqueurs(bornesVisibles);
-
-                // 5. On extrait uniquement les 10 premières lignes pour ton tableau de gauche
                 const lesDixPremieres = bornesVisibles.slice(0, 10);
-                
-                // 6. On génère le tableau (les variables textuelles seront présentes grâce à la route pdc)
                 genererTableauDynamique(lesDixPremieres);
             }
-        }, {}); // Pas besoin de passer de paramètres d'URL, le filtrage se fait côté client
+        }, {});
     }
+
     // ==========================================
     // 4. FONCTIONS DE RENDU VISUEL
     // ==========================================
-    
-    // Met le maximum de points sur la carte (Lancée 1 seule fois)
     function afficherTousLesMarqueurs(stations) {
         markersGroup.clearLayers();
         stations.forEach((station) => {
@@ -104,13 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Met à jour les 10 lignes du tableau de gauche
     function genererTableauDynamique(stationsVisibles) {
         tableBody.innerHTML = ""; 
 
         stationsVisibles.forEach((station) => {
             const row = document.createElement("tr");
-            
             row.innerHTML = `
                 <td>
                     <input type="radio" name="select-borne" class="radio-borne" value="${station.id_pdc_itinerance || ''}">
@@ -162,44 +136,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 5. ÉCOUTEURS D'ÉVÉNEMENTS CARTE & BOUTONS
     // ==========================================
-    
-    // Dès que le zoom change ou qu'on bouge, le tableau suit
     map.on('moveend', mettreAJourTableauFiltre);
 
     function lancerPrediction(e) {
         e.preventDefault(); 
+        
         if (!stationSelectionnee) {
             alert("Veuillez sélectionner une borne de recharge à l'aide des boutons radio !");
             return;
         }
 
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "Page5Classification.html"; 
+        // Sauvegarde des données dans le navigateur
+        sessionStorage.setItem("borneSelectionnee", JSON.stringify(stationSelectionnee));
+        sessionStorage.setItem("typePrediction", this.id); 
 
-        for (const key in stationSelectionnee) {
-            if (stationSelectionnee.hasOwnProperty(key)) {
-                const hiddenField = document.createElement("input");
-                hiddenField.type = "hidden";
-                hiddenField.name = key;
-                hiddenField.value = stationSelectionnee[key];
-                form.appendChild(hiddenField);
-            }
-        }
-
-        const typePrediction = document.createElement("input");
-        typePrediction.type = "hidden";
-        typePrediction.name = "bouton_clique";
-        typePrediction.value = this.id; 
-        form.appendChild(typePrediction);
-
-        document.body.appendChild(form);
-        form.submit();
+        // Redirection
+        window.location.href = "Page5Classification.html";
     }
 
     if (btnImplantation) btnImplantation.addEventListener("click", lancerPrediction);
     if (btnPuissance) btnPuissance.addEventListener("click", lancerPrediction);
 
-    // Démarrage initial
     initialiserCarteEtBornes();
 });

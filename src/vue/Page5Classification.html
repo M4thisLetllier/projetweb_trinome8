@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IRVE DataStudio - Classification IA</title>
 
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/Page5Classification.css">
 </head>
 <body>
 
-<header class="navbar">
+<header>
     <div class="boite-logo">
         <img src="../img/Logo_projet.svg" alt="Logo Pearlab">
         <div class="texte-logo">
@@ -18,11 +17,13 @@
         </div>
     </div>
     <nav>
-        <a href="Page1Accueil.html" class="nav-link">Accueil</a>
-        <a href="Page2MAP.html" class="nav-link">Visualisation & Carte</a>
-        <a href="Page3Stat.html" class="nav-link">Statistiques</a>
-        <a href="Page4Clustering.html" class="nav-link">Prédictions Clusters</a>
-        <a href="Page5Classification.html" class="nav-link active">Classification IA</a>
+        <ul>
+            <li><a href="Page1Accueil.html">Accueil</a></li>
+            <li><a href="Page2MAP.html">Visualisation & Carte</a></li>
+            <li><a href="Page3Stat.html">Statistiques</a></li>
+            <li><a href="Page4Clustering.html">Prédictions Clusters</a></li>
+            <li><a href="Page5Classification.html" class="page-actuelle">Classification IA</a></li>
+        </ul>
     </nav>
 </header>
 
@@ -31,7 +32,10 @@
     <h1>Résultats Comparatifs des Modèles de Classification IA</h1>
 
     <div class="banniere-info">
-        <div><strong>ID Sélectionné : <span id="ia-id">En attente...</span></strong></div>
+        <div><strong>ID Sélectionné :</strong> <span id="ia-id">En attente...</span></div>
+        <div><strong>Aménageur :</strong> <span id="ia-amenageur">En attente...</span></div>
+        <div><strong>Département :</strong> <span id="ia-dep">En attente...</span></div>
+        <div><strong>Puissance actuelle :</strong> <span id="ia-puissance">En attente...</span> kW</div>
     </div>
 
     <div class="grille-resultats">
@@ -47,7 +51,7 @@
                     <div id="barre-rf-imp" class="barre-remplissage" style="width: 94.2%;"></div>
                 </div>
                 <div class="details-resultat">
-                    <div class="ligne-detail"><strong>Trouvée :</strong> <span id="reel-rf-imp" style="font-size: 1.15rem; font-weight: bold;">Chargement...</span></div>
+                    <div class="ligne-detail"><strong>Trouvée :</strong> <span id="reel-rf-imp" class="valeur-trouvee">Chargement...</span></div>
                     <div class="ligne-detail text-muted"><strong>Prédite :</strong> <span id="pred-rf-imp">Chargement...</span></div>
                 </div>
             </div>
@@ -64,7 +68,9 @@
                     <div id="barre-knn-pui" class="barre-remplissage" style="width: 91.0%;"></div>
                 </div>
                 <div class="details-resultat">
-                    <div class="ligne-detail"><strong>Trouvée :</strong> <span id="reel-knn-pui" style="font-size: 1.15rem; font-weight: bold;">Chargement...</span></div>
+                    <div class="ligne-detail">
+                        <strong>Trouvée :</strong>
+                         <span id="reel-knn-pui" class="valeur-trouvee">Chargement...</span></div>
                     <div class="ligne-detail text-muted"><strong>Prédite :</strong> <span id="pred-knn-pui">Chargement...</span></div>
                     <div class="ligne-detail erreur-texte"><strong>Pourcentage d'erreur :</strong> <span id="err-knn-pui">Chargement...</span></div>
                 </div>

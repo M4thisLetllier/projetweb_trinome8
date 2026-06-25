@@ -2,19 +2,22 @@ import sys
 import json
 import pandas as pd
 import joblib
+import os # <-- Ajoute cette ligne
 import warnings
-
-# On ignore les warnings pour garder un JSON propre
 warnings.filterwarnings("ignore")
 
 def main():
     try:
-        # 1. Chargement du modèle
-        # Assure-toi que ce chemin est identique à celui sur ton PC
-        chemin_modele = "C:/Users/hp/Desktop/projet A3 informatique/ProjetA3_web/projetweb_trinome8/src/ia/modele_prediction_implantation.pkl"
-        modele = joblib.load(chemin_modele)
+        # 1. Chargement dynamique du modèle
+        # Cela trouve le dossier où se trouve ce script (implantation.py)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # On construit le chemin du .pkl en le collant au dossier du script
+        modele_path = os.path.join(script_dir, 'modele_prediction_implantation.pkl')
+        
+        modele = joblib.load(modele_path)
     except Exception as e:
-        print(json.dumps({"erreur": f"Modèle introuvable : {str(e)}"}))
+        print(json.dumps({"erreur": f"Modèle introuvable ici: {modele_path}. Détail: {str(e)}"}))
         sys.exit(1)
 
     try:

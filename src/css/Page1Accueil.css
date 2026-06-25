@@ -193,10 +193,10 @@ nav a:hover, nav a.page-actuelle { color: var(--vert-isen); }
     animation: bouge-un-peu 6s ease-in-out infinite; 
 }
 
-@keyframes bouge-un-peu {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+@keyframes bouge-un-peu { /* Animation pour faire bouger légèrement la boîte, donnant un effet de vie */
+    0% { transform: translateY(0px); } /* Position initiale */
+    50% { transform: translateY(-10px); } /* On monte un peu */
+    100% { transform: translateY(0px); } /* On revient à la position initiale */
 }
 
 .barre-haut-fenetre {
