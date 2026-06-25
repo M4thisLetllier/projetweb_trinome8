@@ -1,14 +1,9 @@
-/**
- * IRVE DataStudio - Contrôleur JavaScript Principal
- * FISE3 - 2026
- */
 document.addEventListener("DOMContentLoaded", () => {
+    // Variable qui stocke temporairement la ligne cliquée par l'utilisateur
     let stationSelectionnee = null;
     let toutesLesBornes = [];
 
-    // ==========================================
-    // 1. INITIALISATION DE LA CARTE (Leaflet)
-    // ==========================================
+    // Initialisation de la carte Leaflet centrée sur la France
     const map = L.map('map').setView([46.2276, 2.2137], 6);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -17,9 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const markersGroup = L.layerGroup().addTo(map);
 
-    // ==========================================
-    // 2. SÉLECTION DES ÉLÉMENTS DU DOM
-    // ==========================================
+    // Liaisons avec le HTML
     const tableBody = document.getElementById("table-body");
     const infoPopup = document.getElementById("info-popup");
     const popupStationName = document.getElementById("popup-station-name");
@@ -27,12 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupBornes = document.getElementById("popup-bornes");
     const popupPuissance = document.getElementById("popup-puissance");
     
-    const btnImplantation = document.getElementById("btn-predire-implantation");
-    const btnPuissance = document.getElementById("btn-predire-puissance");
+    const btnPredictionIA = document.getElementById("btn-prediction-ia");
 
-    // ==========================================
-    // 3. REQUÊTES AJAX
-    // ==========================================
+    // Appel au backend (PHP) pour récupérer les données en base
     function initialiserCarteEtBornes() {
         ajaxRequest('../request.php/pdc', 'GET', function(donnees) {
             if (donnees && donnees.length > 0 && !donnees.error) {
@@ -43,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, {}); 
     }
 
+    // Optimisation : Ne charge dans le tableau que les bornes visibles à l'écran
     function mettreAJourTableauFiltre() {
         const limites = map.getBounds();
         ajaxRequest('../request.php/pdc', 'GET', function(toutesLesBornesDuReseau) {
@@ -53,16 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     const lng = parseFloat(station.longitude_pdc);
                     return limites.contains([lat, lng]);
                 });
+                
                 afficherTousLesMarqueurs(bornesVisibles);
+                
+                // On limite l'affichage à 10 pour éviter de surcharger le navigateur
                 const lesDixPremieres = bornesVisibles.slice(0, 10);
                 genererTableauDynamique(lesDixPremieres);
             }
         }, {});
     }
 
-    // ==========================================
-    // 4. FONCTIONS DE RENDU VISUEL
-    // ==========================================
+    // Place les points géographiques sur la carte
     function afficherTousLesMarqueurs(stations) {
         markersGroup.clearLayers();
         stations.forEach((station) => {
@@ -80,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Construction dynamique du tableau à partir des données SQL
     function genererTableauDynamique(stationsVisibles) {
         tableBody.innerHTML = ""; 
 
@@ -99,11 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const radio = row.querySelector(".radio-borne");
             
+            // Maintien de la sélection visuelle lors d'un zoom/déplacement
             if (stationSelectionnee && stationSelectionnee.id_pdc_itinerance === station.id_pdc_itinerance) {
                 radio.checked = true;
                 row.classList.add("selected-fixe");
             }
 
+            // Enregistre la ligne cliquée par l'utilisateur
             radio.addEventListener("change", () => {
                 stationSelectionnee = station;
                 const allRows = tableBody.querySelectorAll("tr");
@@ -111,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 row.classList.add("selected-fixe");
             });
 
+            // Effets de survol (hover) liés à la carte
             row.addEventListener("mouseenter", () => {
                 row.classList.add("selected");
                 afficherInfosPopup(station);
@@ -125,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Remplit la petite bulle d'information sur la carte
     function afficherInfosPopup(donneesStation) {
         popupStationName.textContent = `Commune : ${donneesStation.nom_commune || '--'}`;
         popupAdresse.textContent = `Prise : ${donneesStation.denomination_prise || '--'}`;
@@ -133,29 +130,26 @@ document.addEventListener("DOMContentLoaded", () => {
         infoPopup.style.display = "block";
     }
 
-    // ==========================================
-    // 5. ÉCOUTEURS D'ÉVÉNEMENTS CARTE & BOUTONS
-    // ==========================================
+    // Recharge le tableau à chaque fois que l'utilisateur déplace la carte
     map.on('moveend', mettreAJourTableauFiltre);
 
-    function lancerPrediction(e) {
-        e.preventDefault(); 
-        
-        if (!stationSelectionnee) {
-            alert("Veuillez sélectionner une borne de recharge à l'aide des boutons radio !");
-            return;
-        }
+    // Sécurité : Vérifie qu'une borne est choisie avant d'envoyer à l'IA
+    if (btnPredictionIA) {
+        btnPredictionIA.addEventListener("click", function(e) {
+            e.preventDefault(); 
+            
+            if (!stationSelectionnee) {
+                alert("Veuillez d'abord sélectionner une borne dans le tableau.");
+                return;
+            }
 
-        // Sauvegarde des données dans le navigateur
-        sessionStorage.setItem("borneSelectionnee", JSON.stringify(stationSelectionnee));
-        sessionStorage.setItem("typePrediction", this.id); 
+            // On stocke la borne en cache navigateur pour la récupérer sur la Page 5
+            sessionStorage.setItem("borneSelectionnee", JSON.stringify(stationSelectionnee));
 
-        // Redirection
-        window.location.href = "Page5Classification.html";
+            // Redirection vers le dashboard IA
+            window.location.href = "Page5Classification.html";
+        });
     }
-
-    if (btnImplantation) btnImplantation.addEventListener("click", lancerPrediction);
-    if (btnPuissance) btnPuissance.addEventListener("click", lancerPrediction);
 
     initialiserCarteEtBornes();
 });

@@ -1,16 +1,19 @@
-/* --- Variables des couleurs du projet (Charte graphique Apple) --- */
+/* ==========================================================================
+   CSS SIMPLIFIÉ ET INDUSTRIEL POUR LA PAGE 1 (Accueil)
+   ========================================================================== */
+
+/* --- Charte Graphique du Projet --- */
 :root { 
-    --vert-isen: #34C759;
-    --noir-texte: #1D1D1F;
-    --gris-texte: #86868B;
-    --gris-bordure: #E5E5EA;
-    --blanc-casse: #F5F5F7;
-    --ombre-legere: 0px 20px 40px rgba(0,0,0,0.08);
+    --vert-isen: #2E8B57; /* Vert institutionnel */
+    --noir-texte: #111827;
+    --gris-texte: #4B5563;
+    --gris-bordure: #D1D5DB;
+    --blanc-casse: #F3F4F6;
     --police-principale: 'Inter', sans-serif;
 }
 
 html { 
-    scroll-behavior: smooth;
+    scroll-behavior: smooth /* scroll lent */
 }
 
 body {
@@ -27,9 +30,9 @@ a {
 }
 
 /* --- Menu de navigation (Header) --- */
+/* --- Menu de navigation (Header unifié et industriel) --- */
 header {
-    background-color: rgba(255, 255, 255, 0.9); 
-    backdrop-filter: blur(10px); 
+    background-color: #FFFFFF;
     border-bottom: 1px solid var(--gris-bordure);
     display: flex; 
     justify-content: space-between; 
@@ -38,7 +41,6 @@ header {
     position: sticky; 
     top: 0; 
     z-index: 1000; 
-    letter-spacing: -0.5px;
 }
 
 .bloc-logo { 
@@ -47,22 +49,55 @@ header {
     gap: 8px;
 }
 
+/*  pour la petite poire */
 .bloc-logo img { 
-    height: 70px; 
+    height: 70px;
     width: auto; 
     margin-right: -5px; 
     mix-blend-mode: multiply; 
+
 }
 
-.texte-logo { font-size: 22px; margin-top: 5px; }
-.texte-logo .gras { font-weight: 900; color: var(--noir-texte); }
-.texte-logo .normal { font-weight: 400; color: var(--gris-texte); }
+.texte-logo { 
+    font-size: 22px; 
+    margin-top: 5px; 
+}
 
-nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
-nav a { font-weight: 600; font-size: 14px; color: var(--gris-texte); transition: color 0.3s ease; }
-nav a:hover, nav a.page-actuelle { color: var(--vert-isen); }
-nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom: 4px; }
+.texte-logo .gras { 
+    font-weight: 900; 
+    color: var(--noir-texte); 
+}
 
+/* LAB redevient gris */
+.texte-logo .normal { 
+    font-weight: 400; 
+    color: var(--gris-texte); 
+}
+
+nav ul { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+    margin: 0; 
+    padding: 0; 
+}
+
+nav a { 
+    font-weight: 600; 
+    font-size: 14px; 
+    color: var(--gris-texte); 
+    transition: color 0.1s; 
+}
+
+nav a:hover, 
+nav a.page-actuelle { 
+    color: var(--vert-isen); 
+}
+
+nav a.page-actuelle { 
+    border-bottom: 2px solid var(--vert-isen); 
+    padding-bottom: 4px; 
+}
 /* --- SECTION 1 : BANNIÈRE VIDÉO D'ACCUEIL --- */
 .banniere-accueil {
     height: 90vh; 
@@ -75,18 +110,22 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
 
 .video-fond {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
     object-fit: cover;
-    z-index: 1;
+    z-index: 1; /* Vidéo derrière le contenu */
 }
 
 .filtre-sombre {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); 
-    z-index: 2;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Assombri pour meilleure lisibilité du texte */
+    z-index: 2; /* Filtre devant la vidéo mais derrière le contenu */
 }
 
 .contenu-banniere {
@@ -102,22 +141,20 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
     color: #FFFFFF; 
     background-color: var(--vert-isen); 
     padding: 6px 16px; 
-    border-radius: 20px; 
+    border-radius: 4px; /* Fin du badge rond */
     display: inline-block; 
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(52, 199, 89, 0.3); 
 }
 
 .contenu-banniere h1 {
-    font-size: 64px;
-    font-weight: 900;
-    letter-spacing: -2px;
+    font-size: 48px; /* Taille plus raisonnable */
+    font-weight: 800;
     margin: 0 0 10px 0;
 }
 
 .contenu-banniere p {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     opacity: 0.9;
     margin-bottom: 40px;
@@ -128,11 +165,11 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
     color: #FFFFFF;
     padding: 12px 24px;
     border: 2px solid #FFFFFF;
-    border-radius: 30px;
+    border-radius: 4px; /* Fin du bouton rond */
     font-size: 14px;
     font-weight: 600;
-    transition: all 0.3s ease;
     display: inline-block;
+    transition: background-color 0.2s; /* Uniquement la couleur change */
 }
 
 .bouton-ancrage:hover {
@@ -140,62 +177,61 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
     color: var(--noir-texte);
 }
 
-/* --- SECTION 2 : PRÉSENTATION ET FONCTIONNALITÉS --- */
+/* --- SECTION 2 : PRÉSENTATION DE L'OUTIL --- */
 .section-presentation {
     min-height: 100vh; 
     background-color: var(--blanc-casse);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 100px 20px 60px 20px;
+    padding: 80px 20px 60px 20px;
 }
 
 .texte-introductif {
     max-width: 1000px;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .texte-introductif h2 {
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
+    font-size: 32px;
+    font-weight: 700;
     color: var(--noir-texte);
     margin-top: 0;
     margin-bottom: 20px;
 }
 
 .texte-introductif p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--gris-texte);
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
-/* --- Aperçu du Tableau --- */
+/* --- Aperçu du Tableau de Données --- */
 .cadre-tableau-apercu {
     width: 100%;
+    max-width: 1200px; /* Limite la largeur pour éviter un tableau infini */
     background: #FFFFFF;
     border: 1px solid var(--gris-bordure);
-    border-radius: 12px;
-    box-shadow: var(--ombre-legere);
+    border-radius: 4px; /* Angles cassés */
     margin: 0 auto 50px auto;
     overflow: hidden;
     text-align: left;
 }
 
 .en-tete-apercu {
-    background: #F9F9FB;
+    background: #F9FAFB;
     padding: 15px 25px;
     border-bottom: 1px solid var(--gris-bordure);
     display: flex;
-    justify-content: center; /* Titre parfaitement centré */
+    justify-content: center; 
     align-items: center;
 }
 
 .en-tete-apercu h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--noir-texte);
 }
@@ -208,22 +244,21 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
 .tableau-donnees {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .tableau-donnees th {
     color: var(--gris-texte);
-    padding: 15px 25px;
-    font-weight: 600;
+    padding: 12px 20px;
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 11px;
     border-bottom: 1px solid var(--gris-bordure);
     background: #FFFFFF;
 }
 
 .tableau-donnees td {
-    padding: 15px 25px;
+    padding: 12px 20px;
     border-bottom: 1px solid var(--gris-bordure);
     color: var(--noir-texte);
 }
@@ -232,34 +267,30 @@ nav a.page-actuelle { border-bottom: 2px solid var(--vert-isen); padding-bottom:
     border-bottom: none;
 }
 
-.tableau-donnees tbody tr:hover {
-    background-color: #F5F5F7;
-}
-
-/* --- Bouton principal --- */
+/* --- Bouton d'action principal--- */
 .bouton-principal {
     background-color: var(--vert-isen);
     color: #FFFFFF;
-    padding: 16px 32px;
-    border-radius: 30px;
-    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 4px; /* Fin du bouton en pilule */
+    font-size: 14px;
     font-weight: 700;
-    box-shadow: 0 4px 15px rgba(52, 199, 89, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
     display: inline-block;
+    transition: background-color 0.2s; /* Uniquement la couleur change */
 }
 
 .bouton-principal:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 199, 89, 0.6);
+    background-color: #246B43; /* Vert légèrement plus foncé */
 }
 
 /* --- Footer --- */
 footer { 
     text-align: center; 
-    padding: 40px; 
+    padding: 20px; 
     color: var(--gris-texte); 
     font-size: 12px; 
     border-top: 1px solid var(--gris-bordure); 
-    background-color: var(--blanc-casse); 
+    background-color: #FFFFFF; 
+    margin-top: auto;
 }
