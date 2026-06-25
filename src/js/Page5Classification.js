@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const puissanceReelle = parseFloat(borneSelectionnee.puissance_nominale) || 0;
 
-    // 3. Fonction générique pour interroger ton script PHP/Python
+    // 3. Fonction générique pour interroger le script PHP/Python
     function demanderPredictionIA(action) {
         const formData = new FormData();
         for (const cle in borneSelectionnee) {
