@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS SIMPLIFIÉ ET INDUSTRIEL POUR LA PAGE 5 (Classification IA)
+   CSS POUR LA PAGE 5 (Classification IA)
    ========================================================================== */
 
 /* --- Variables de couleurs --- */
@@ -43,30 +43,30 @@ header {
     top: 0;
     z-index: 1000; 
 }
-
+/* --- Logo et texte du site --- */
 .boite-logo {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-
+/*  pour les dimensions de la Poire */
 .boite-logo img {
     height: 40px;
     width: auto;
     margin-right: -5px;
 }
-
+/* Texte du logo : "LAB" en gras et "Réseau de données" en normal */
 .texte-logo {
     font-size: 20px;
     font-weight: 900;
     margin-top: 5px;
 }
-
+/* Texte du logo : "LAB" en gras et "Réseau de données" en normal */
 .texte-logo .normal {
     font-weight: 400;
     color: var(--gris-texte);
 }
-
+/* --- Navigation --- */
 nav ul {
     list-style: none;
     display: flex;

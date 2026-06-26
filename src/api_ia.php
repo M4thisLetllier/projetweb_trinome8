@@ -1,5 +1,5 @@
 <?php
-// api_ia.php - Version finale pour environnement Linux
+// api_ia.php- pour environnement Linux
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); /* Permet les requêtes cross-origin pour les tests */
 
