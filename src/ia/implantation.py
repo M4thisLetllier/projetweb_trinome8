@@ -37,6 +37,7 @@ def get_pdc_data(id_pdc):
             JOIN Accessibilite_pmr ap ON p.id_accessibilite = ap.id_accessibilite
             WHERE p.id_pdc_itinerance = %s
         """
+        # Exécution de la requête principale
         cursor.execute(query_main, (id_pdc,))
         pdc_info = cursor.fetchone()
 
@@ -51,6 +52,7 @@ def get_pdc_data(id_pdc):
             WHERE a.id_pdc_itinerance = %s
         """
         cursor.execute(query_prises, (id_pdc,))
+        // On récupère les types de prises et on les met en minuscules pour faciliter la recherche de mots-clés
         prises = [row['denomination_prise'].lower() for row in cursor.fetchall()]
 
         # 3. Requête : Types de paiements associés à ce PDC
