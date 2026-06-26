@@ -237,3 +237,19 @@ nav a.page-actuelle {
 .erreur-texte strong {
     color: var(--rouge-alerte);
 }
+
+
+footer { 
+    text-align: center; 
+    padding: 20px; 
+    color: var(--gris-texte); 
+    font-size: 12px;
+    border-top: 1px solid var(--gris-bordure); 
+    background-color: #FFFFFF; 
+    margin-top: auto;
+}
+
+.noms-equipe {
+    font-weight: 600; /* Met les noms légèrement en gras */
+    color: var(--noir-texte); /* Fait ressortir vos noms par rapport au gris du projet */
+}

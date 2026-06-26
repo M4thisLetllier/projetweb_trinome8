@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS SIMPLIFIÉ ET INDUSTRIEL POUR LA PAGE 1 (Accueil)
+   CSS POUR LA PAGE 1 (Accueil)
    ========================================================================== */
 
 /* --- Charte Graphique du Projet --- */
@@ -15,7 +15,7 @@
 html { 
     scroll-behavior: smooth /* scroll lent */
 }
-
+/* --- Styles Globaux --- */
 body {
     margin: 0; 
     padding: 0; 
@@ -23,14 +23,13 @@ body {
     background-color: var(--blanc-casse);
     color: var(--noir-texte); 
 }
-
+/* --- Liens --- */
 a { 
     text-decoration: none; 
     color: inherit; 
 }
 
 /* --- Menu de navigation (Header) --- */
-/* --- Menu de navigation (Header unifié et industriel) --- */
 header {
     background-color: #FFFFFF;
     border-bottom: 1px solid var(--gris-bordure);
@@ -43,6 +42,7 @@ header {
     z-index: 1000; 
 }
 
+/* --- Logo et texte du site --- */
 .bloc-logo { 
     display: flex; 
     align-items: center;
@@ -57,23 +57,24 @@ header {
     mix-blend-mode: multiply; 
 
 }
-
+/* Texte du logo : "LAB" en gras et "Réseau de données" en normal */
 .texte-logo { 
     font-size: 22px; 
     margin-top: 5px; 
 }
 
+/* LAB en gras et noir */
 .texte-logo .gras { 
     font-weight: 900; 
     color: var(--noir-texte); 
 }
 
-/* LAB redevient gris */
+/* LAB devient gris */
 .texte-logo .normal { 
     font-weight: 400; 
     color: var(--gris-texte); 
 }
-
+/* --- Menu de navigation --- */
 nav ul { 
     list-style: none; 
     display: flex; 
@@ -81,19 +82,19 @@ nav ul {
     margin: 0; 
     padding: 0; 
 }
-
+/* Liens du menu : style et survol */
 nav a { 
     font-weight: 600; 
     font-size: 14px; 
     color: var(--gris-texte); 
     transition: color 0.1s; 
 }
-
+/* Survol et page actuelle : couleur verte */
 nav a:hover, 
 nav a.page-actuelle { 
     color: var(--vert-isen); 
 }
-
+/* Soulignement de la page actuelle */
 nav a.page-actuelle { 
     border-bottom: 2px solid var(--vert-isen); 
     padding-bottom: 4px; 
@@ -117,7 +118,7 @@ nav a.page-actuelle {
     object-fit: cover;
     z-index: 1; /* Vidéo derrière le contenu */
 }
-
+/* Filtre sombre pour améliorer la lisibilité du texte sur la vidéo */
 .filtre-sombre {
     position: absolute;
     top: 0; 
@@ -127,7 +128,7 @@ nav a.page-actuelle {
     background-color: rgba(0, 0, 0, 0.6); /* Assombri pour meilleure lisibilité du texte */
     z-index: 2; /* Filtre devant la vidéo mais derrière le contenu */
 }
-
+/* Contenu de la bannière : texte et bouton */
 .contenu-banniere {
     position: relative;
     z-index: 3;
@@ -155,7 +156,7 @@ nav a.page-actuelle {
 
 .contenu-banniere p {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 400; /* Texte plus léger pour la description */
     opacity: 0.9;
     margin-bottom: 40px;
 }
@@ -164,17 +165,17 @@ nav a.page-actuelle {
     background-color: transparent;
     color: #FFFFFF;
     padding: 12px 24px;
-    border: 2px solid #FFFFFF;
-    border-radius: 4px; /* Fin du bouton rond */
+    border: 2px solid #FFFFFF; 
+    border-radius: 4px; /* bouton non rond */
     font-size: 14px;
-    font-weight: 600;
-    display: inline-block;
-    transition: background-color 0.2s; /* Uniquement la couleur change */
+    font-weight: 600; 
+    display: inline-block; 
+    transition: background-color 0.2s; /* la couleur change */
 }
-
+/* Survol du bouton : fond blanc et texte noir */
 .bouton-ancrage:hover {
     background-color: #FFFFFF;
-    color: var(--noir-texte);
+    color: var(--noir-texte); /* Texte noir sur fond blanc */
 }
 
 /* --- SECTION 2 : PRÉSENTATION DE L'OUTIL --- */
@@ -235,12 +236,12 @@ nav a.page-actuelle {
     font-weight: 700;
     color: var(--noir-texte);
 }
-
+/* --- Tableau de Données --- */
 .conteneur-tableau {
     width: 100%;
     overflow-x: auto;
 }
-
+/* Style du tableau de données */
 .tableau-donnees {
     width: 100%;
     border-collapse: collapse;
@@ -293,4 +294,9 @@ footer {
     border-top: 1px solid var(--gris-bordure); 
     background-color: #FFFFFF; 
     margin-top: auto;
+}
+
+.noms-equipe {
+    font-weight: 600; /* noms légèrement en gras */
+    color: var(--noir-texte); /* Fait ressortir les noms par rapport au gris du projet */
 }

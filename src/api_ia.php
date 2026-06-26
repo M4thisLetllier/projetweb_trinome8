@@ -1,7 +1,7 @@
 <?php
 // api_ia.php - Version finale pour environnement Linux
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *'); /* Permet les requêtes cross-origin pour les tests */
 
 // On accepte POST (pour le site) ET GET (pour tes tests)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         exit;
     }
 
-   $script_path = $base_dir . DIRECTORY_SEPARATOR . "ia" . DIRECTORY_SEPARATOR . $script_file;
+    $script_path = $base_dir . DIRECTORY_SEPARATOR . "ia" . DIRECTORY_SEPARATOR . $script_file;
 
     // 5. Vérification de l'existence du fichier
     if (!file_exists($script_path)) {
@@ -36,13 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         ]);
         exit;
     }
+    
     // 6. Exécution (Linux)
     $commande = "$python_exe " . escapeshellarg($script_path) . " " . escapeshellarg($id_pdc) . " " . escapeshellarg($puissance) . " 2>&1";
     
-    $resultat = shell_exec($commande);
+    $resultat = shell_exec($commande); // Exécute la commande et capture la sortie
 
-    if (!empty($resultat)) {
-        echo trim($resultat);
+    if (!empty($resultat)) { // Vérifie si le résultat n'est pas vide
+        echo trim($resultat); // Renvoie le résultat brut du script Python
     } else {
         echo json_encode(["erreur" => "Le modèle IA n'a rien renvoyé."]);
     }

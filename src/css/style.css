@@ -277,6 +277,11 @@ footer {
     margin-top: auto;
 }
 
+.noms-equipe {
+    font-weight: 600; /* Met les noms légèrement en gras */
+    color: var(--noir-texte); /* Fait ressortir vos noms par rapport au gris du projet */
+}
+
 /* ==========================================================================
    5. STYLES SPÉCIFIQUES : PAGE 3 (STATISTIQUES)
    ========================================================================== */
