@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "Page2MAP.html";
         return;
     }
-
+    // Conversion de la chaîne JSON en objet JavaScript
     const borneSelectionnee = JSON.parse(borneDataString);
 
     // 2. Mise à jour de la bannière verte en haut
@@ -19,36 +19,40 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("ia-dep").textContent = borneSelectionnee.denomination_dep || "Inconnu";
     document.getElementById("ia-puissance").textContent = (borneSelectionnee.puissance_nominale || "0") + " kW";
 
+    // Conversion de la puissance nominale en nombre pour le calcul d'erreur
     const puissanceReelle = parseFloat(borneSelectionnee.puissance_nominale) || 0;
 
     // 3. Fonction générique pour interroger le script PHP/Python
     function demanderPredictionIA(action) {
         const formData = new FormData();
-        for (const cle in borneSelectionnee) {
-            formData.append(cle, borneSelectionnee[cle]);
+        for (const cle in borneSelectionnee) { // Ajout de toutes les données de la borne sélectionnée
+            formData.append(cle, borneSelectionnee[cle]); // Ajoute chaque propriété de l'objet borneSelectionnee au FormData
         }
-        formData.append("action_ia", action);
+        formData.append("action_ia", action); // Ajout de l'action spécifique pour l'IA (implantation ou puissance)
 
         return fetch('../api_ia.php', {
-            method: 'POST',
+            method: 'POST', // Utilisation de POST pour envoyer les données
             body: formData
         }).then(response => response.json());
     }
 
     // 4. Lancer la prédiction pour L'IMPLANTATION (Carte de gauche)
-    demanderPredictionIA("btn-predire-implantation")
+    demanderPredictionIA("btn-predire-implantation") 
         .then(data => {
-            if (data.erreur) {
+             // Gestion de la réponse de l'IA pour l'implantation
+            if (data.erreur) { 
+                // Vérification si l'IA a renvoyé une erreur
                 console.error("Erreur IA Implantation:", data.erreur);
-                document.getElementById("pred-rf-imp").textContent = "Erreur IA";
+                document.getElementById("pred-rf-imp").textContent = "Erreur IA"; 
                 return;
             }
             // Remplissage des données trouvées et prédites
-            document.getElementById("pred-rf-imp").textContent = data.prediction_IA;
+            document.getElementById("pred-rf-imp").textContent = data.prediction_IA; // Affichage de la prédiction de l'IA pour l'implantation
             document.getElementById("reel-rf-imp").textContent = borneSelectionnee.denomination_implantation || "Non renseigné";
             document.getElementById("barre-rf-imp").style.width = "94.2%";
         })
-        .catch(error => console.error("Erreur réseau Implantation:", error));
+        // Gestion des erreurs réseau pour l'implantation
+        .catch(error => console.error("Erreur réseau Implantation:", error)); 
 
     // 5. Lancer la prédiction pour LA PUISSANCE (Carte de droite)
     demanderPredictionIA("btn-predire-puissance")
@@ -62,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const puissancePredite = parseFloat(data.prediction_IA) || 0;
             
             // Remplissage des données trouvées et prédites
-            document.getElementById("pred-knn-pui").textContent = puissancePredite.toFixed(2) + " kW";
-            document.getElementById("reel-knn-pui").textContent = puissanceReelle + " kW";
+            document.getElementById("pred-knn-pui").textContent = puissancePredite.toFixed(2) + " kW"; // Affichage de la prédiction de l'IA pour la puissance
+            document.getElementById("reel-knn-pui").textContent = puissanceReelle + " kW"; // Affichage de la puissance réelle de la borne
             document.getElementById("barre-knn-pui").style.width = "91.0%";
 
             // Calcul du pourcentage d'erreur (la formule mathématique)
@@ -72,10 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("err-knn-pui").textContent = erreur.toFixed(2) + " %";
                 
                 // Mettre l'erreur en rouge pour que ça ressorte bien
-                document.getElementById("err-knn-pui").style.color = "red";
+                document.getElementById("err-knn-pui").style.color = "red"; // Changement de couleur du texte de l'erreur en rouge
             } else {
-                document.getElementById("err-knn-pui").textContent = "N/A";
+                document.getElementById("err-knn-pui").textContent = "N/A"; // Si la puissance réelle est 0, on ne peut pas calculer l'erreur
             }
         })
+        // Gestion des erreurs réseau pour la puissance
         .catch(error => console.error("Erreur réseau Puissance:", error));
 });
