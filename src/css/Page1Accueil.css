@@ -147,20 +147,20 @@ nav a.page-actuelle {
     letter-spacing: 1px;
     margin-bottom: 20px;
 }
-
+/* Titre principal de la bannière */
 .contenu-banniere h1 {
     font-size: 48px; /* Taille plus raisonnable */
     font-weight: 800;
     margin: 0 0 10px 0;
 }
-
+/* Description de la bannière */
 .contenu-banniere p {
     font-size: 20px;
     font-weight: 400; /* Texte plus léger pour la description */
     opacity: 0.9;
     margin-bottom: 40px;
 }
-
+/* Bouton d'ancrage : style */
 .bouton-ancrage {
     background-color: transparent;
     color: #FFFFFF;
