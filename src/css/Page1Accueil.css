@@ -169,7 +169,7 @@ nav a.page-actuelle {
     border-radius: 4px; /* bouton non rond */
     font-size: 14px;
     font-weight: 600; 
-    display: inline-block; 
+    display: inline-block;
     transition: background-color 0.2s; /* la couleur change */
 }
 /* Survol du bouton : fond blanc et texte noir */
