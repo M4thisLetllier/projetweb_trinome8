@@ -1,5 +1,6 @@
 <?php
 // api_ia.php- pour environnement Linux
+// Ce fichier sert d'API pour interagir avec les scripts Python d'IA (implantation.py et puissance.py)
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); /* Permet les requêtes cross-origin pour les tests */
 
