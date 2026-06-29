@@ -140,11 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (!stationSelectionnee) {
                 alert("Veuillez d'abord sélectionner une borne dans le tableau.");
-                return;
+                return ; 
             }
 
             // On stocke la borne en cache navigateur pour la récupérer sur la Page 5
-            sessionStorage.setItem("borneSelectionnee", JSON.stringify(stationSelectionnee));
+            sessionStorage.setItem("borneSelectionnee", JSON.stringify(stationSelectionnee));// Redirection vers le dashboard IA
 
             // Redirection vers le dashboard IA
             window.location.href = "Page5Classification.html";

@@ -6,3 +6,8 @@ RUN docker-php-ext-install pdo pdo_mysql
 
 # (Optionnel) On active un module Apache très utile pour le routing (URL Rewriting)
 RUN a2enmod rewrite
+
+
+
+
+Get dans la page1MAp.js avec le ?id_pdc_itinerance
